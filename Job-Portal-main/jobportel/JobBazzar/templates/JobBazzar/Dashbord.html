@@ -1,0 +1,371 @@
+{% comment %} https://jobie.dexignzone.com/react/demo/dashboard {% endcomment %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    {% load  static %}
+    <link rel="icon" type="image/x-icon" href="{%static "Profile.png"%}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>Dashbord</title>
+    {% comment %} <link rel="icon" href="./favicon.ico" type="image/x-icon"> {% endcomment %}
+    <style>
+
+
+        *{
+            margin:0;
+        }
+        body{
+            background-color:rgb(242,242,242);
+            font-family:Sans-serif;
+        }
+        .nav{
+            width:100%;
+            height:40px;
+            background-color:rgb(242,242,242);
+            font-family:Sans-serif;
+            font-size:28px;
+            margin-top:10px;
+        }
+        .top-data{
+            margin-top:30px;
+            width:100%;
+            height:auto;
+            display:flex;
+            flex-wrap:wrap;
+            flex-direction:row;
+            justify-content:center;
+        }
+        .grid{
+            {% comment %} width:670px; {% endcomment %}
+            width:650px;
+            height:153px;
+            background-color:#40189D;
+            {% comment %} margin-left:65px; {% endcomment %}
+            margin-left:50px;
+            margin-right:50px;
+            display:flex;
+            border-radius:10px;
+            margin-top:20px;
+        }
+        .left{
+            margin-left:2%;
+            width:28%;
+            height:100%;
+            float:left;
+            {% comment %} background-color:red; {% endcomment %}
+
+        }
+        .right{
+            margin-right:2%;
+            width:68%;
+            height:100%;
+            float:right;
+            {% comment %} background-color:#40189D; {% endcomment %}
+            {% comment %} position:; {% endcomment %}
+        }
+        .icon{
+            margin-left:30%;
+            margin-top:25%;
+            {% comment %} border:2px solid white; {% endcomment %}
+            border-radius:10px;
+            {% comment %} border-spacing: 15px 50px;   {% endcomment %}
+        }
+        .tag-title{
+            top:100px;
+            margin-left:70%;
+            margin-top:5%;
+            color:white;
+            Font-family:Sans-serif;
+            font-weight:300;
+            {% comment %} font-size:22px;
+            color:#40189D;
+            text-decoration:none; {% endcomment %}
+        }
+        .num{
+            margin-left:73%;
+            color:rgb(242,242,242);
+            margin-top:1%;
+            font-size:39px;
+        }
+        .btn{
+            width:200px;
+            height:40px;
+            margin-top:25px;
+            color:white;
+            background-color:#40189D;
+            border:none;
+            border-radius:10px;
+            font-size:18px;
+            cursor:pointer;
+        }
+        {% comment %} table{
+            width:90%;
+        } {% endcomment %}
+        table{
+            width:90%;
+            background-color:white;
+            margin-top:20px;
+            color:#40189D;
+
+
+        }
+        tr{
+            {% comment %} width:90%; {% endcomment %}
+            background-color:rgb(133,200,242,0.8);
+
+
+        }
+        th{
+            height:30px;
+        }
+        td{
+            text-align:center;
+        }
+        .Delete{
+            width:70px;
+            height:30px;
+            margin-left:10px;
+            border:none;
+            background-color:rgb(133,200,242,0.10);
+            cursor:pointer;
+        }
+        .tit{
+             font-size:17px;
+             color:#40189D;
+             text-decoration:none; 
+        }
+
+        {% comment %} Form {% endcomment %}
+.form-popup {
+  display: none;
+  position: fixed;
+  bottom: 0;
+  right: 15px;
+  border: 3px solid #f1f1f1;
+  z-index: 9;
+  background-color: #fefefe;
+}
+
+
+.form-container {
+  max-width: 700px;
+  max-height: 600px;
+  padding: 20px;
+  {% comment %} height:600px; {% endcomment %}
+}
+
+
+.form-container input[type=text],input[type=number]{
+  width: 95%;
+  margin-right:5%;
+  padding: 10px;
+  margin: 5px 0 15px 0;
+  border: none;
+  background: #f1f1f1;
+}
+select{
+    padding: 10px;
+    width:95%;
+    margin-right:5%;
+    margin: 5px 0 15px 0;
+    border: none;
+    background: #f1f1f1;
+
+}
+textarea{
+  width: 95%;
+  height:120px;
+  margin-right:5%;
+  padding: 10px;
+  margin: 5px 0 15px 0;
+  border: none;
+  background: #f1f1f1;
+}
+option {
+    color: Gray;
+    padding: 10px;
+  }
+  label{
+    font-size:14px;
+}
+
+
+.form-container .btn1 {
+  background-color: #04AA6D;
+  color: white;
+  padding: 16px 20px;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  margin-bottom: 10px;
+  opacity: 0.8;
+}
+
+
+.form-container .cancel {
+  background-color: red;
+}
+
+
+.form-container .btn:hover, .open-button:hover {
+  opacity: 1;
+}
+.logos{
+    width: 95%;
+    {% comment %} height:120px; {% endcomment %}
+    margin-right:5%;
+    padding: 10px;
+}
+        {% comment %} Form End {% endcomment %}
+        @media only screen and (max-width: 600px) {
+            .grid{
+                margin-left:1%;
+                margin-right:1%;
+                width:98%;
+                margin-top:13px;
+                Font-family:Sans-serif;
+            }
+            .tag-title{
+                top:100px;
+                margin-left:50%;
+                margin-top:5%;
+                color:white;
+                Font-family:Sans-serif;
+                font-weight:300;
+                font-size:22px;
+            }
+            .num{
+                margin-left:57%;
+                color:rgb(242,242,242);
+                margin-top:1%;
+                font-size:39px;
+            }
+            .form-container {
+                max-width: 300px;
+                padding: 20px;
+              }
+              table{
+                width:100%;
+              }
+          }
+          @media only screen and (min-width: 993px) and (max-width: 1370px) {
+            /* Your CSS rules for large devices go here */
+
+            .grid{
+                {% comment %} width:670px; {% endcomment %}
+                width:560px;
+                height:153px;
+                background-color:#40189D;
+                display:flex;
+                border-radius:10px;
+                margin-top:20px;
+            }
+            .icon{
+                width:40px;
+                height:40px;
+                margin-top:50px;
+            }
+            .tag-title{
+                margin-left: 60%;
+            }
+            .num{
+                margin-left:63%;
+            }
+        }
+    
+        
+          {% comment %} Vacency Data {% endcomment %}
+  
+    </style>
+  </head>
+  <body>
+    <div class="nav"><center>{{company_name}}</center></div>
+    <div class="top-data">
+        <div class="grid">
+            <div class="left"> <img class="icon" src="{% static 'cal.png'%}"> </div>
+            <div class="right"><h3 class="tag-title">Interviews</h3><h1 class="num">{{CI}}</h1></div>
+        </div>
+
+        <div class="grid" style="background-color:#48a9f8">
+            <div class="left"> <img class="icon" src="{% static 'app.png'%}"> </div>
+            <div class="right"><h3 class="tag-title">Applications</h3><h1 class="num">{{CA}}</h1></div>
+        </div>
+
+        <div class="grid" style="background-color:#1BD084">
+            <div class="left"> <img class="icon" src="{% static 'vec.png'%}"> </div>
+            <div class="right"><h3 class="tag-title">Vacancey</h3><h1 class="num">{{count}}</h1></div>
+        </div>
+
+        <div class="grid" style="background-color:#8bc740">
+            <div class="left"> <img class="icon" src="{% static 'pending.png'%}"> </div>
+            <div class="right"><h3 class="tag-title">Pending</h3><h1 class="num">{{CP}}</h1></div>
+        </div>
+
+    </div>
+    <div class="button"><center><button id="openForm" class="btn">List New Vacancey</button></center></div>
+    <center>
+    <table>
+        <tr><th>No</th><th>Job ID</th><th>Job Title</th><th colspan="1">Action</th></tr>
+        {% comment %} {% with c=0 %}  {% endcomment %}
+        {% comment %} <tr><td>1</td><td>AND2203</td><td>Android  Android Android Android Android Android </td><td><a href="delete" onclick="return confirm('Are you sure You wan't to Delete?')" class="Delete"/><i class="fa fa-trash-o" style="font-size:25px;color:red"></i></a><button class="Delete"><i class="fa fa-edit" style="font-size:25px;color:green"></i></button></td></tr> {% endcomment %}
+        {% comment %} <a href="delete" onclick="return confirm('Are you sure?')">Link</a> {% endcomment %}
+
+        {% for j in listed_jobs %}
+        <tr><td>{{forloop.counter}}</td><td>{{j.id}}</td><td><a class="tit" href="/dashbord/{{j.id}}/{{j.emails}}" id="clickToOpen" >{{j.job_title}}</a></td><td><a class="Delete" href="delete/{{j.id}}" onclick="return confirm('Are you sure went to Delete?')"><i class="fa fa-trash-o" style="font-size:25px;color:red"></i><a/><a class="Delete" href="jobupdate/{{j.id}}/{{j.emails}}"><i class="fa fa-edit" style="font-size:25px;color:green"></i></a></td></tr>
+             {% comment %} {% c=c|add:'1'%} {% endcomment %}
+        {% endfor %}
+        {% comment %} {% endwith %} {% endcomment %}
+
+      
+
+    </table>
+</center>
+
+<div id="popupForm" class="form-popup">
+    <form class="form-container" style=" overflow: scroll;" method="POST"  enctype="multipart/form-data">
+      {% csrf_token %}
+      <center><h2>Job Details</h2></center>
+      {% comment %} <label for="job_title"><b>Job Title</b></label> {% endcomment %}
+      <input type="text" name="company" placeholder="Company Name" Value="{{company_name}}"  readonly="true"required>
+      <input type="text" name="title" placeholder="Enter Job Title"  required>
+      <input type="text" name="location" placeholder="Location Ex:- Ahemdabad" required>
+      <input type="text" name="zip" placeholder="Zipcode : 380058" required>
+      <input type="text" name="hour" placeholder="Hours Ex:- 50h / Week" required>
+      {% comment %} <input type="text" name="category" placeholder="Category" name="job_title" required> {% endcomment %}
+      <select id="sel" name="category"></select>
+      <input type="text" name="rate" placeholder="Ex :- 5000 / hr" required>
+      <input type="text" name="salary" placeholder="Ex :- 8.0 - 9.0 LPA" required>
+      <textarea id="myInput" name="desc" placeholder="Job Description"></textarea>
+      <textarea id="myInput" name="res" placeholder="Key Responsiblity Ex:- Responsiblity 1,Responsiblity 2" required></textarea>
+      <input type="text" id="myInput" name="skills" placeholder="Skills Ex:- Python,Django,reactjs" required></input>
+      <input type="text" id="sj" name="skil1" placeholder="Skill 1:" required></input>
+      <input type="text" id="myInput" name="skil2" placeholder="Skill 2:" required></input>
+      <input type="text" id="myInput" name="skil3" placeholder="Skill 3:" required></input>
+
+      <input type="number" id="myInput" name="exp" placeholder="Experience Ex:- 3" required></input>
+      <select id="sel" name="time">
+        <option value="Part Time">Part Time</option>
+        <option value="Full Time">Full Time</option>
+        <option value="Freelancer">Freelancer</option>
+      </select>
+      </select>
+      <input type="file" class="logos" id="myInput" name="logo" placeholder="Upload Logo" accept="image/jpeg, image/png, image/jpg" required></input>
+
+ <!-- Add other fields similarly -->
+  
+      <button type="submit" class="btn1">Submit</button>
+      <button type="button" class="btn1 cancel" onclick="closeForm()">Close</button>
+    </form>
+  </div>
+
+  {% comment %} Vacency Data {% endcomment %}
+
+  
+  
+  <script src="{% static 'dashbord.js'%}"></script>
+  
+  
+  </body>
+</html>

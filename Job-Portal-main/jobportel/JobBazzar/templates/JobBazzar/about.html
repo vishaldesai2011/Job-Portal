@@ -1,0 +1,349 @@
+
+
+<!DOCTYPE html>
+
+<html>
+   
+<head runat="server">
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
+    <style>
+  {% comment %} @import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap'); {% endcomment %}
+</style>
+    <script src="https://code.iconify.design/3/3.1.0/iconify.min.js"></script>
+    <title>About Us</title>
+    
+   <style>
+    {%load static%}
+
+       *{
+           margin:0;
+           padding:0;
+           box-sizing:border-box;
+       }
+       .con{
+           width:100%;
+           height:800px;
+           background-image:url("{% static 'bg2.jpg' %}");
+           background-size:cover;
+           background-repeat:no-repeat;
+           animation:backgroundanim;
+           animation-duration:1s;
+       }
+       .nav{
+           width:100%;
+           height:50px;
+           background-color:rgb(0,0,0,0.7);
+           border-bottom:1px solid black;
+           position:relative;
+           animation:navanim;
+           animation-duration:1s;
+           
+       }
+       @keyframes navanim{
+           0%{top:-100px;opacity:20%;}
+           25%{top:-50px;opacity:40%;}
+           50%{top:-25pc;opacity:80%;}
+           100%{top:0px;opacity:100%;}
+       }
+
+        @keyframes backgroundanim{
+           0%{opacity:20%;}
+           25%{opacity:40%;}
+           50%{opacity:80%;}
+           100%{opacity:100%;}
+       }
+         @keyframes TITLE{
+           0%{top:-300px;}
+          /* 25%{top:-75px;}
+           50%{top:-50px;}
+           75%{top:-25px;}*/
+           100%{top:0px;}
+       }
+       ul{
+           list-style:none;
+           display:flex;
+           justify-content:center;
+       }
+       li{
+           padding:15px;
+           color:white;
+           font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+       }
+       .title{
+          /*color:rgba(202,240,250,255);*/
+          color:white;
+          font-family: 'Source Sans Pro', sans-serif;
+          font-size:28px;
+          
+       }
+       .cross{
+           width:auto;
+           height:200px;
+           margin-top:50px;
+           margin-left:450px;
+           animation:TITLE;
+           position:relative;
+           /*animation-delay:1s;*/
+           animation-duration:2s;
+           /*background:rgb(100,30,60,0.3)*/
+
+       }
+       .content{
+           width:200px;
+           height:600px;
+           position:relative;
+           top:20px;
+           left:0px;
+           /*float:left;*/
+           left:-500px;
+           top:50px;
+
+          
+       }
+       .check{
+           width:about;
+           animation:slide;
+           animation-duration:1s;
+           position:relative;
+           left:200px;
+           top:50px;
+
+       }
+        @keyframes slide{
+           0%{left:-200px;}
+          /* 25%{left:-100px;}
+           50%{left:0px;}
+           75%{left:100px;}*/
+           100%{left:200px;}
+       }
+        .left{
+            width:500px;
+            height:300px;
+            background-color:white;
+           border-right:6px solid black;
+
+
+        }
+        .right{
+            margin-top:20px;
+            width:500px;
+            height:350px;
+            background-color:white;
+            position:relative;
+            left:495px;
+           border-left:6px solid black;
+
+
+        }
+        .sliderh1{
+            font-family:Merriweather,serif;
+            font-size:45px;
+           
+
+        }
+        .p1{
+            overflow:auto;
+            font-size:22px;
+            font-size:1.25rem;
+            line-height: 1.8;
+            color:lightslategray;
+            margin-left:5%;
+            margin-right:5%;
+            margin-top:100px;
+
+
+        }
+        .p{
+              font-size:1.25rem;
+              color:lightslategray;
+              line-height: 1.8;
+        }
+        .padl{
+            padding-left:20px;
+        }
+        .con_grid{
+            margin-top:70px;
+            width:100%;
+            height:200px;
+            display:flex;
+            flex-direction:row;
+            flex-wrap:wrap;
+            background-color:black;
+            column-gap:30px;
+            justify-content:center;
+        }
+
+        .grid{
+            width:370px;
+            height:about;
+            background-color: rgb(251,251,251);
+            justify-content:center;
+             box-shadow: 2px 7px 5px lightslategray;
+        }
+        .tophead{
+
+            margin-top:100px;
+            /*background-color:#fc052e;*/
+            background-color:black;
+            text-align:center;
+            color:white;
+        }
+        .h1{
+            font-size:40px;
+            padding-top:20px;
+            font-family:Merriweather,serif;
+        }
+        .img{
+            margin-top:30px;
+            width:80%;
+            height:282px;
+        }
+        .name{
+            width:80%;
+            height:160px;
+            background-color:#F2F2F2;
+            margin-left:36px;
+            margin-top:10px;
+        }
+        .he{
+            font-family:Montserrat, sans-serif !important;
+            color:black;
+              line-height: 3.0em;
+            
+        }
+        .h3{
+            color:black;
+            font-family:Montserrat, sans-serif !important;
+        }a{
+             text-decoration:none;
+             color:white;
+             font-size:22px;
+         }
+         a:hover{
+             text-decoration:none;
+             /*color:rgba(202,240,250,255);*/   
+             font-size:22px;
+             text-shadow: 1px 1px 2px black, 0 0 25px blue, 0 0 5px blue;
+         }
+         html{scroll-behavior:smooth}
+
+
+       
+      
+   </style>
+
+</head>
+       <body>
+
+           <div class="con">
+               <div class="nav">
+                   <ul>
+                       <li><a href="/">Home</a></li>
+                       {% comment %} <li><a href="Home.aspx#call">Property</a></li> {% endcomment %}
+                       <li><a href="#hi">About</a></li>
+                       {% comment %} <li><a href="CarTour.aspx">News</a></li> {% endcomment %}
+                       <li><a href="login">Login</a></li>
+                   </ul>
+               </div>
+               
+               <div class="cross">
+                
+               </div>
+           </div>
+
+           {% comment %} <div class="content" id="hi"> {% endcomment %}
+{% comment %} <center> {% endcomment %}
+            <p class="p1"> At <font color="#0076FD"><b>JobBazaar</b></font>, <br>
+            </br><b>About Us</b></br>
+                Welcome to Job Bazaar  !</br>
+                
+                At Job Bazaar Portal , we are committed to bridging the gap between job seekers, freelancers, and companies, providing a platform where opportunities meet talent. Our mission is to empower individuals to find meaningful employment, build successful careers, and connect with the right opportunities to fuel their professional growth.
+            </br></br><b>Our Vision</b></br>
+                We envision a world where every individual has access to opportunities that align with their skills, passions, and career aspirations. By fostering a dynamic and inclusive job marketplace, we aim to revolutionize the way people find employment and businesses discover top talent.
+            
+            </br></br><b>What We Offer</b></br>
+                Comprehensive Job Listings: Our platform hosts a diverse range of job opportunities across various industries, catering to the needs and preferences of job seekers.
+                
+                Seamless Hiring Process: For companies, we provide a streamlined process to post job listings, screen candidates, and make informed hiring decisions.
+                
+                Empowering Freelancers: Freelancers can showcase their skills, expertise, and portfolios to attract clients and secure rewarding projects.
+                
+                Personalized Experience: With advanced search and filtering options, users can customize their job search experience to find roles that match their criteria.
+                
+                Community Engagement: We foster a vibrant community where users can share insights, seek advice, and collaborate with peers to navigate their professional journeys effectively.
+                
+            </br></br><b>Our Team</b></br>
+                Job Bazaar is powered by a dedicated team of professionals who are passionate about empowering individuals and businesses in their quest for success. With a diverse range of backgrounds and expertise, our team is committed to delivering an exceptional user experience and driving positive outcomes for our community.
+                
+                Get in Touch
+                We value feedback and welcome inquiries from our users. Whether you have questions, suggestions, or partnership opportunities, we're here to assist you. Feel free to reach out to us through our contact page, and we'll be happy to assist you.
+                
+                Thank you for choosing Job Bazaar as your trusted partner in the pursuit of professional excellence.</p>
+{% comment %} </center> {% endcomment %}
+               {% comment %} <div class="left">
+                   <p class="p">about us</p>
+                   <h1 class="sliderh1">Unlocking Career Paths</h1>
+                   <p class="p1"> At <font color="#0076FD"><b>JobBazaar</b></font>, we understand the importance of finding the right job. Whether you're a seasoned professional looking for your next career move or a recent graduate eager to kick-start your professional journey, we're here to help you connect with opportunities that match your skills, experience, and ambitions.</p>
+               </div>
+
+               <div class="right">
+                  
+                   <p class="p1 padl">Our platform is designed to simplify the job search process, providing you with easy access to a wide range of job listings from top companies across various industries. We strive to empower job seekers like you by offering innovative tools and resources to enhance your job search experience.</p>
+               </div> {% endcomment %}
+
+            {% comment %} </div> {% endcomment %}
+
+           <div class="tophead">
+               <h1 class="h1">Meet Our Leaders</h1>
+           <div class="con_grid" id="grid">
+               <div class="grid">
+                   <image class="img" src="{% static 'dhruv1.jpeg' %}"></image>
+                   <div class="name">
+                       <h2 class="he">Dhruv Patel</h2>
+                       <h3 class="h3">Founder & CEO</h3>
+                       <ul><li><a href="https://instagram.com/dhruv_patel_.07?igshid=YmMyMTA2M2Y="><span class="iconify" data-icon="typcn:social-facebook" style="color: #0076FD;" data-width="35" data-height="35"></span></a></li><li><a href="https://instagram.com/dhruv_patel_.07?igshid=YmMyMTA2M2Y="><span class="iconify" data-icon="mdi:twitter" style="color:#0076FD;" data-width="35" data-height="35"></span></a></li><li><a href="https://instagram.com/dhruv_patel_.07?igshid=YmMyMTA2M2Y="><span class="iconify" data-icon="uim:instagram" style="color: #0076FD;" data-width="35" data-height="35"></span></a></li></ul>
+
+                   </div>
+               </div>
+          
+
+               <div class="grid">
+                   <image class="img" src="{% static 'vishal.jpeg'%}"></image>
+                   <div class="name">
+                       <h2 class="he">Vishal Desai</h2>
+                       <h3 class="h3">CMO</h3>
+                       <ul><li><a href="https://instagram.com/vishal__2011?igshid=YmMyMTA2M2Y="><span class="iconify" data-icon="typcn:social-facebook" style="color: #0076FD" data-width="35" data-height="35"></span></a></li><li><a href="https://instagram.com/vishal__2011?igshid=YmMyMTA2M2Y="><span class="iconify" data-icon="mdi:twitter" style="color: #0076FD;" data-width="35" data-height="35"></span></a></li><li><a href="https://instagram.com/vishal__2011?igshid=YmMyMTA2M2Y="><span class="iconify" data-icon="uim:instagram" style="color: #0076FD;" data-width="35" data-height="35"></span></a></li></ul>
+
+                   </div>
+               </div>
+
+
+               <div class="grid">
+                   <image class="img" src="{% static 'uttam2.jpg' %}"></image>
+                   <div class="name">
+                       <h2 class="he">Uttam Jasoliya</h2>
+                       <h3 class="h3">CFO</h3>
+                       <ul><li><a href="https://instagram.com/patelpurvanshu_5707?igshid=YmMyMTA2M2Y="><span class="iconify" data-icon="typcn:social-facebook" style="color: #0076FD" data-width="35" data-height="35"></span></a></li><li><a href="https://instagram.com/patelpurvanshu_5707?igshid=YmMyMTA2M2Y="><span class="iconify" data-icon="mdi:twitter" style="color: #0076FD" data-width="35" data-height="35"></span></a></li><li><a href="https://instagram.com/patelpurvanshu_5707?igshid=YmMyMTA2M2Y="><span class="iconify" data-icon="uim:instagram" style="color: #0076FD" data-width="35" data-height="35"></span></a></li></ul>
+
+                   </div>
+               </div>
+              
+               </div>
+               </div>
+
+
+    <script>
+        window.onscroll = function () { myFunction() };
+
+        function myFunction() {
+            if (document.documentElement.scrollTop > 340) {
+                document.getElementById("hi").className = "check";
+            }
+           
+            
+        }
+    </script>
+</body>
+</html>

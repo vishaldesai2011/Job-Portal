@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% comment %} <meta name="viewport" content="width=device-width, initial-scale=1"> {% endcomment %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    {% comment %} <meta name="description" content="Generate beautiful marriage biodatas effortlessly with our online biodata maker. Create personalized profiles, choose from stunning templates, and make a lasting impression. Design your perfect marriage biodata with ease."> {% endcomment %}
+    
+    <title>Job Bazaar</title>
+   
+    <style>
+.container{
+    background-color:black;
+    width:350px;
+    height:500px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top:50px;
+    {% comment %} width: 50%; {% endcomment %}
+    padding: 10px;
+    background: linear-gradient(90deg, #5D54A4, #7C78B8);
+    overflow: hidden;
+    border:3px solid #625AA8;
+
+
+}
+.h1{
+    color:white;
+    font-family: Raleway, sans-serif;
+}
+.box{
+    padding:0;
+    width:100%;
+    height:63%;
+    margin-top:70px;
+    margin-left:3%;
+    {% comment %} background-color:pink; {% endcomment %}
+}
+.lbl{
+    font-size:17px;
+    font-family:Raleway, sans-serif;
+    color:White;
+}
+input{
+    width:90%;
+    height:35px;
+    border:2px solid white;
+}
+.circle{
+    width:100%;
+    height:100%;
+    border-radius:20%;
+    background-color:white;
+}
+.circle:hover{
+  width:100%;
+  height:100%;
+  border-radius:20%;
+  background-color:white;
+  cursor:pointer;
+}
+button{
+    margin-left:32%;
+    margin-top:5%;
+    background-color:white;
+    border:none;
+    width:120px;
+    font-size:18px;
+    color:#625AA8;
+
+
+}
+
+button:hover{
+   cursor:pointer;
+    color:black;
+   
+
+}
+{% comment %} Nav {% endcomment %}
+
+body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  
+  .topnav {
+    overflow: hidden;
+    background-color: #white;
+    border-bottom:2px solid #625AA8;
+  }
+  
+  .topnav a {
+    float: left;
+    display: block;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+  }
+  
+  .topnav a:hover {
+    background-color: #ddd;
+    color: black;
+  }
+  
+  .topnav a.active {
+    background-color: #04AA6D;
+    color: white;
+  }
+  
+  .topnav .icon {
+    display: none;
+  }
+  .img{
+    width:100px;
+    height:100px;
+    margin-left:45%;
+
+  }
+  a{
+    text-decoration:none;
+    margin-left:55%;
+    {% comment %} text-align:right; {% endcomment %}
+    color:pink;
+  
+    {% comment %} margin-top:30px; {% endcomment %}
+  }
+  a:hover{
+    text-decoration:none;
+    color:white;
+  
+    {% comment %} margin-top:30px; {% endcomment %}
+  }
+  .error{
+    color:white;
+    font-family:Arial, Helvetica, sans-ser;
+  }
+ 
+  
+  @media screen and (max-width: 600px) {
+    .topnav a:not(:first-child) {display: none;}
+    .topnav a.icon {
+      float: right;
+      display: block;
+    }
+    .img{
+        width:50px;
+        height:50px;
+    margin-left:0%;
+
+      }
+  }
+  
+  @media screen and (max-width: 600px) {
+    .topnav.responsive {position: relative;}
+    .topnav.responsive .icon {
+      position: absolute;
+      right: 0;
+      top: 0;
+    }
+    .topnav.responsive a {
+      float: none;
+      display: block;
+      {% comment %} text-align: left; {% endcomment %}
+    }
+    .img{
+        width:50px;
+        height:50px;
+    {% comment %} margin-left:%; {% endcomment %}
+
+      }
+  }
+
+    </style>
+   
+</head>
+<body>
+
+    <div class="topnav" id="myTopnav">
+        {% comment %} <a href="#home" class="active">Home</a>
+        <a href="#news">News</a>
+        <a href="#contact">Contact</a>
+        <a href="#about">About</a> {% endcomment %}
+    {% load static %}
+        <img class="img" src="{% static "logo.png" %}" alt="Company Logo">
+        <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+          <i class="fa fa-bars"></i>
+        </a>
+      </div>
+      
+      {% comment %} Nav END {% endcomment %}
+    <div class="container">
+        <h1 class="h1">Dashbord Login</h1>
+        <hr color="white" size="3">
+        <div class="box">
+          <center><label class="error"><b>
+            {% if messages %}
+            {% for message in messages %}
+            {{ message }}
+            {% endfor %}
+            {% endif %}
+          </b></label></center>
+
+            <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <br>
+        
+
+                <label class="lbl mar">Email</label><br>
+                <input type="email" name="email" placeholder="Email"><br><br>
+
+                <label class="lbl">Password</label><br>
+                <input type="password" name="Password" placeholder="Password"><br>
+
+
+               
+                <a href="adminlogin">Create account ?</a><br>
+                {% comment %} <a href="ForgotPassword">Forgot Password ?</a><br> {% endcomment %}
+
+
+        </div>
+        <div class="circle">
+            <button type="submit" onclick="validate()">Login</button>
+
+        </form>
+            
+        </div>
+    </div>
+    <script>
+        function myFunction() {
+          var x = document.getElementById("myTopnav");
+          if (x.className === "topnav") {
+            x.className += " responsive";
+          } else {
+            x.className = "topnav";
+          }
+        }
+        </script>
+
+</body>

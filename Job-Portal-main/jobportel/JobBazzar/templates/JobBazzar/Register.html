@@ -1,0 +1,206 @@
+
+<!DOCTYPE html>
+
+<html>
+
+     <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Registration</title>
+    <style>
+        *{
+           margin:0;
+           box-sizing:border-box;
+        }
+        .container{
+            margin: auto;
+            width: 70%;
+            height:500px;
+            {% comment %} /*border: 3px solid green;*/
+            /*padding: 10px;*/ {% endcomment %}
+        }
+        {% load static %}
+        .left{
+             float:left;
+             width:50%;
+             height:100%;
+             background-image:url({%static "register.png" %}); 
+             {% comment %} /*background-size:cover;*/ {% endcomment %}
+             background-repeat: no-repeat;
+             background-size: cover;
+             
+
+        }
+        .right{
+            {% comment %} /*border:2px solid black;*/ {% endcomment %}
+             float:right;
+             width:50%;
+             height:100%;
+            {% comment %} /*background:red;*/ {% endcomment %}
+        }
+        #email{
+            width:70%;
+            justify-content:center;
+            align-items:center;
+            margin-top:30px;
+            height:40px;    
+            color:#625AA8;
+        }
+        .form{  
+            margin-top:30%;
+            justify-content:center;
+            align-items:center;
+        }
+        #varify{
+            margin-top:20px;
+        }
+        #varify{
+            height:40px;
+            width:70%;
+            background:#625AA8;
+            border:none;
+            color:white;
+        }
+         #varify:hover{
+            height:40px;
+            width:70%;
+            background:white;
+            border:1px solid #625AA8;
+            color:#625AA8;
+        }
+         h1{
+             font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+             margin-top:30px;
+             color:#625AA8;
+         }
+         .img{
+             display:none;
+         }
+         a{
+            text-decoration:none;
+            margin-left:41%;
+            color:#625AA8;
+          
+            {% comment %} margin-top:30px; {% endcomment %}
+          }
+          a:hover{
+            text-decoration:none;
+            color:pink;
+          
+            {% comment %} margin-top:30px; {% endcomment %}
+          }
+          label{
+            font-family:Raleway, sans-serif;
+            color:#625AA8;
+            margin-left:17%;
+            font-size:25px;
+          }
+        @media only screen and (max-width: 700px) {
+            .left {
+                width:100%;
+                height:200px;
+                background:none;
+                {% comment %} /*display:none;*/ {% endcomment %}
+            }
+              .right {
+                width:100%;
+            }
+              .form{
+                  {% comment %} /*margin-top:20px;*/ {% endcomment %}
+                  margin-left:60px;
+              }
+               .container{
+                   width:90%;
+               }
+               .img{
+                   {% comment %} /*padding-top:40px;*/ {% endcomment %}
+                   display:block;
+                   width:300px;
+                   {% comment %} /*height:300px;*/ {% endcomment %}
+               }
+               .ahc{
+                position:relative;
+                right:100px;
+               }
+        }
+
+        .loader {
+            border: 16px solid #f3f3f3;
+            border-top: 16px solid #3498db;
+            border-radius: 50%;
+            width: 120px;
+            height: 120px;
+            animation: spin 2s linear infinite;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 9999;
+            display: none; /* Initially hidden */
+          }
+          
+          @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+          }
+    </style>
+</head>
+
+<body>
+  
+      <Center> <h1>{{com}} Registration</h1> </Center> 
+      <div class="loader"></div>
+    <div class="container">
+        <div class="left">
+            <img class="img" src="{% static "register.png" %}" />
+        </div>
+
+        <div class="right">
+           
+            <form method="post" enctype="multipart/form-data">
+                
+                {% csrf_token %}
+              <div class="form">
+                  <input name="email" id="email" placeholder="Email"/><br />
+                <a href="login" class="ahc">Already have account ?</a><br/>
+
+                  <button id="varify"  type="Submit" OnClick="Click" >Verify</Button><br>
+                    <label>
+<b>
+    
+                        {% if messages %}
+                        {% for message in messages %}
+                        {{ message }}
+                    {% endfor %}
+                    {% endif %}
+</b>
+                    </label>
+              </div>
+    </form>
+        </div>
+    </div>
+    <Script>
+        {% comment %} document.addEventListener('DOMContentLoaded', function () {
+            // Document has finished loading and the DOM is ready
+            alert('DOM is ready');
+        });
+        
+        window.addEventListener('load', function () {
+            // Entire page has finished loading including all sub-resources
+            alert('Page and all resources are loaded');
+        });
+        
+        if (document.readyState === 'loading') {
+            // Document is still loading
+            alert('Document is still loading');
+        } else if (document.readyState === 'interactive') {
+            // Document has been parsed but sub-resources are still loading
+            alert('DOM is ready but sub-resources are still loading');
+        } else if (document.readyState === 'complete') {
+            // Document and all sub-resources have finished loading
+            alert('Document and all resources are loaded');
+        }
+         {% endcomment %}
+
+    </script>
+</body>
+</html>

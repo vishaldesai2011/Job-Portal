@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Registration Form</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 20px;
+    }
+    .container {
+        max-width: 500px;
+        margin: auto;
+    }
+    input[type=text], input[type=email], input[type=tel], input[type=date], input[type=url], input[type=password], input[type=file] {
+        width: 100%;
+        padding: 10px;
+        margin: 5px 0 20px 0;
+        display: inline-block;
+        border: 1px solid #ccc;
+        box-sizing: border-box;
+        border-radius: 5px;
+    }
+    input[type=submit] {
+        background-color: #0076FD;
+        color: white;
+        padding: 14px 20px;
+        margin: 8px 0;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        width: 100%;
+    }
+    input[type=submit]:hover {
+        background-color: #45a049;
+    }
+    .error {
+        color: red;
+    }
+</style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Company Registration Form</h2>
+    <form id="registrationForm" method="post" enctype="multipart/form-data" onsubmit="return validateForm()">
+        {% csrf_token %}
+        <label for="companyName">Company Name:</label>
+        <input type="text" id="companyName" name="companyName" required>
+
+        <label for="foundedIn">Founded In:</label>
+        <input type="date" id="foundedIn" name="foundedIn" required>
+
+        <label for="phone">Phone:</label>
+        <input type="tel" id="phone" name="phone" pattern="[0-9]{10}" required title="Please enter a 10-digit phone number">
+
+        {% comment %} <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required> {% endcomment %}
+
+        <label for="location">Location:</label>
+        <input type="text" id="location" name="location" required>
+
+        <label for="website">Website:</label>
+        <input type="url" id="website" name="website" required>
+
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required>
+
+        <label for="confirmPassword">Confirm Password:</label>
+        <input type="password" id="confirmPassword" name="confirmPassword" required>
+
+        <label for="logo">Upload Logo:</label>
+        <input type="file" id="logo" name="logo"  accept="image/jpeg, image/png, image/jpg">
+
+        <input type="submit" value="Submit">
+    </form>
+</div>
+
+<script>
+    function validateForm() {
+        var companyName = document.getElementById("companyName").value.trim();
+        var foundedIn = document.getElementById("foundedIn").value;
+        var phone = document.getElementById("phone").value;
+      //  var email = document.getElementById("email").value.trim();
+        var location = document.getElementById("location").value.trim();
+        var website = document.getElementById("website").value.trim();
+        var password = document.getElementById("password").value;
+        var confirmPassword = document.getElementById("confirmPassword").value;
+
+        var isValid = true;
+
+        if (companyName === "") {
+            isValid = false;
+            document.getElementById("companyName").classList.add("error");
+        } else {
+            document.getElementById("companyName").classList.remove("error");
+        }
+
+        if (foundedIn === "") {
+            isValid = false;
+            document.getElementById("foundedIn").classList.add("error");
+        } else {
+            document.getElementById("foundedIn").classList.remove("error");
+        }
+
+        if (!phone.match(/^\d{10}$/)) {
+            isValid = false;
+            document.getElementById("phone").classList.add("error");
+        } else {
+            document.getElementById("phone").classList.remove("error");
+        }
+
+      /*  if (email === "" || !isValidEmail(email)) {
+            isValid = false;
+            document.getElementById("email").classList.add("error");
+        } else {
+            document.getElementById("email").classList.remove("error");
+        }*/
+
+        if (location === "") {
+            isValid = false;
+            document.getElementById("location").classList.add("error");
+        } else {
+            document.getElementById("location").classList.remove("error");
+        }
+
+        if (website === "" || !isValidUrl(website)) {
+            isValid = false;
+            document.getElementById("website").classList.add("error");
+        } else {
+            document.getElementById("website").classList.remove("error");
+        }
+
+        if (password === "") {
+            isValid = false;
+            document.getElementById("password").classList.add("error");
+        } else {
+            document.getElementById("password").classList.remove("error");
+        }
+
+        if (confirmPassword === "" || confirmPassword !== password) {
+            isValid = false;
+            document.getElementById("confirmPassword").classList.add("error");
+        } else {
+            document.getElementById("confirmPassword").classList.remove("error");
+        }
+
+        return isValid;
+    }
+
+    function isValidEmail(email) {
+        var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return emailRegex.test(email);
+    }
+
+    function isValidUrl(url) {
+        var urlRegex = /^(ftp|http|https):\/\/[^ "]+$/;
+        return urlRegex.test(url);
+    }
+</script>
+
+</body>
+</html>

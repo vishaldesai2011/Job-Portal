@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Information Form</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 20px;
+        padding: 0;
+        background-color: #f2f2f2;
+    }
+
+    form {
+        max-width: 600px;
+        margin: 0 auto;
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    label {
+        font-weight: bold;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="tel"],
+    input[type="number"] {
+        width: 100%;
+        padding: 8px;
+        margin: 6px 0;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+    }
+
+    input[type="submit"] {
+        background-color: #4CAF50;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        width: 100%;
+    }
+
+    input[type="submit"]:hover {
+        background-color: #45a049;
+    }
+
+    @media screen and (max-width: 600px) {
+        form {
+            width: 90%;
+        }
+    }
+    textarea{
+        width: 100%;
+        height:120px;
+    }
+</style>
+</head>
+<body>
+  <center>  <h1>Profile</h1></center>
+    <form enctype="multipart/form-data" method="POST" onsubmit="return validateForm()">
+        {%csrf_token%}
+        <label for="name">Name:</label><br>
+        <input type="text" id="name" name="name" placeholder="EX :- Dhruv A Patel" value="{{profile.name}}"><br><br>
+
+        <label for="location">Location:</label><br>
+        <input type="text" id="location" name="location" placeholder="EX :- Ahmedabad,Gujarat" value="{{profile.location}}"><br><br>
+
+        <label for="degree">Degree:</label><br>
+        <input type="text" id="degree" name="degree" placeholder="Bachelor of computer application" value="{{profile.degree}}"><br><br>
+
+        <label for="phone">Phone:</label><br>
+        <input type="tel" id="phone" name="phone" placeholder="+919879560747" value={{profile.phone}}><br><br>
+
+        {% comment %} <label for="email">Email:</label><br>
+        <input type="email" id="email" name="email" placeholder="name@gmail.com"><br><br> {% endcomment %}
+
+        <label for="school">School:</label><br>
+        <input type="text" id="school" name="school" placeholder="School" value="{{profile.school}}"><br><br>
+
+        <label for="college">College:</label><br>
+        <input type="text" id="college" name="college" placeholder="Collage" value="{{profile.college}}"><br><br>
+
+        <label for="age">Age:</label><br>
+        <input type="number" id="age" name="age" placeholder="21" value="{{profile.age}}"><br><br>
+
+        <label for="experience">Experience:</label><br>
+        <input type="text" id="experience" name="experience" placeholder="2 Years" value="{{profile.experience}}"><br><br>
+
+        <label for="passingYear">Passing Year:</label><br>
+        <input type="text" id="passingYear" name="passingYear" placeholder="March 2023" value="{{profile.passingYear}}"><br><br>
+
+        <label for="language">Language:</label><br>
+        <input type="text" id="language" name="language" placeholder="EX :- HINDI,ENGLISH" value="{{profile.language}}"><br><br>
+
+        <label for="linkedin">LinkedIn:</label><br>
+        <input type="text" id="linkedin" name="linkedin" placeholder="@name" value="{{profile.linkedin}}"><br><br>
+
+        <label for="cgpa">CGPA:</label><br>
+        <input type="text" id="cgpa" name="cgpa" placeholder="7.7" value="{{profile.cgpa}}"><br><br>
+
+        <label for="skills">Skills:</label><br>
+        <input type="text" id="skills" name="skills" placeholder="Ex:- python,java,webdeveloper,android developer" value="{{profile.skills}}"><br><br>
+
+        {% comment %} <label for="education">Education:</label><br>
+        <input type="text" id="education" name="education" value="{{profile.education}}" ><br><br> {% endcomment %}
+
+        <label for="projects">Projects:</label><br>
+        <input type="text" id="projects" name="projects" placeholder="EX :- Project Title : - Details,Project Title :- Details" value="{{profile.projects}}"><br><br>
+
+        <label for="projects">Work Experience</label><br>
+        <textarea type="text" id="projects" name="workexp" placeholder="EX :- Project Title : - Details,Project Title :- Details" >{{profile.experience_field}}</textarea><br><br>
+
+        <label for="achievements">Achievements/Hobbies:</label><br>
+        <input type="text" id="achievements" name="achievements" placeholder="Cricket,Listen Music" value="{{profile.achievements}}"><br><br>
+        
+         <label for="Profile">Profile Image</label><br>
+        <input type="file" name="profile_photo"><br><br> 
+
+        <input type="submit" value="Submit">
+    </form>
+
+
+</body>
+
+<script>
+    function validateForm() {
+        var name = document.getElementById("name").value;
+        var location = document.getElementById("location").value;
+        var degree = document.getElementById("degree").value;
+        var phone = document.getElementById("phone").value;
+        var email = document.getElementById("email").value;
+        var school = document.getElementById("school").value;
+        var college = document.getElementById("college").value;
+        var age = document.getElementById("age").value;
+        var experience = document.getElementById("experience").value;
+        var passingYear = document.getElementById("passingYear").value;
+        var language = document.getElementById("language").value;
+        var linkedin = document.getElementById("linkedin").value;
+        var cgpa = document.getElementById("cgpa").value;
+        var skills = document.getElementById("skills").value;
+        var education = document.getElementById("education").value;
+        var projects = document.getElementById("projects").value;
+        var achievements = document.getElementById("achievements").value;
+        
+        if (name === "" || location === "" || degree === "" || phone === "" || email === "" || school === "" || college === "" || age === "" || experience === "" || passingYear === "" || language === "" || linkedin === "" || cgpa === "" || skills === "" || education === "" || projects === "" || achievements === "") {
+            alert("Please fill out all required fields.");
+            return false;
+        }
+        return true;
+    }
+    </script>
+</html>

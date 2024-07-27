@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+{% load static%}
+<link rel="icon" type="image/x-icon" href="{%static "Profile.png"%}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<title>Job Bazaar Dashbord</title>
+<style>
+ body, html {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+  }
+  .container {
+    width: 80%;
+    margin: auto;
+    border: 1px solid #ccc;
+    overflow: auto; /* Enable scrolling for smaller screens */
+  }
+  .pop-tab {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  .pop-th, .pop-td {
+    padding: 8px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+  }
+  .pop-th {
+    background-color: #f2f2f2;
+  }
+  th{
+    text-align:center;
+  }
+  @media (max-width: 600px) {
+    /* Adjust styles for smaller screens */
+    .container {
+      width: 100%;
+      height: auto;
+    }
+  }
+</style>
+</head>
+<body>
+
+  <center><h1>{{Job}}</h1></center>
+<div class="container">
+  <table class="pop-tab">
+    <thead>
+      <tr class="pop-tr">
+        <th class="pop-th">No</th>
+        {% comment %} <th class="pop-th">ID</th> {% endcomment %}
+        <th class="pop-th">NAME</th>
+        <th class="pop-th">CV</th>
+        <th class="pop-th">STATUS</th>
+        <th class="pop-th">ACTION</th>
+      </tr>
+    </thead>
+    <tbody>
+        {%for val in lv %}
+      <tr>
+        <td class="pop-td">{{forloop.counter}}</td>
+        {% comment %} <td class="pop-td">{{val.id}}</td> {% endcomment %}
+        <td class="pop-td">{{val.name}}</td>
+        <td class="pop-td"><a href="{{val.cv.url}}"><i class="fa fa-eye" aria-hidden="true"></i></a></td>
+        <td class="pop-td">{{val.status}}</td>
+        <td class="pop-td">
+              {% comment %} <select> {% endcomment %}
+                <a  href="/Action/{{val.id}}/X0xvVq+DvGV0f+b98xEnyQ==/{{val.company_email}}"><i class="fa fa-times" aria-hidden="true" style="font-size:18px;color:red"></i></a>&emsp;
+                <a  href="/Action/{{val.id}}/xiK8as2h6OCmpTU47kyYTg==/{{val.company_email}}"><i class="fa fa-check" aria-hidden="true" style="font-size:18px;color:green"></i></a>
+                {% comment %} <option  value="accepted">Accepted</option> {% endcomment %}
+              {% comment %} </select> {% endcomment %}
+        </td>
+
+
+
+
+        {% comment %} <td class="pop-td">Data 2</td>
+        <td class="pop-td">Data 3</td>
+        <td class="pop-td">Data 3</td> {% endcomment %}
+      </tr>
+{% endfor %}
+
+      <!-- Add more rows as needed -->
+    </tbody>
+  </table>
+</div>
+
+
+<div class="container">
+
+  <center><h1 style="margin-top:100px;">Selected Applications</h1></center>
+  <table class="pop-tab">
+    <thead>
+      <tr class="pop-tr">
+        <th class="pop-th">No</th>
+        {% comment %} <th class="pop-th">ID</th> {% endcomment %}
+        <th class="pop-th">NAME</th>
+        <th class="pop-th">CV</th>
+        <th class="pop-th">STATUS</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      {%for val in selected %}
+    <tr>
+      <td class="pop-td">{{forloop.counter}}</td>
+      {% comment %} <td class="pop-td">{{val.id}}</td> {% endcomment %}
+      <td class="pop-td">{{val.name}}</td>
+      <td class="pop-td"><a href="{{val.cv.url}}"><i class="fa fa-eye" aria-hidden="true"></i></a></td>
+      <td class="pop-td">{{val.status}}</td>
+    </tr>
+{% endfor %}
+
+    <!-- Add more rows as needed -->
+  </tbody>
+</table>
+</div>
+
+</body>
+</html>

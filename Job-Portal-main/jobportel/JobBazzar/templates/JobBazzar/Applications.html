@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+{% load static%}
+<link rel="icon" type="image/x-icon" href="{%static "Profile.png"%}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<title>Job Bazaar Dashbord</title>
+<style>
+ body, html {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+  }
+  .container {
+    width: 80%;
+    margin: auto;
+    border: 1px solid #ccc;
+    overflow: auto; /* Enable scrolling for smaller screens */
+  }
+  .pop-tab {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  .pop-th, .pop-td {
+    padding: 8px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+  }
+  .pop-th {
+    background-color: #f2f2f2;
+  }
+  th{
+    text-align:center;
+  }
+  .aa1{
+    text-decoration:none;
+    color:blue;
+  }
+  .aa1:hover{
+    text-decoration:none;
+    color:black;
+  }
+  @media (max-width: 600px) {
+    /* Adjust styles for smaller screens */
+    .container {
+      width: 100%;
+      height: auto;
+    }
+  }
+</style>
+</head>
+<body>
+
+  <center><h1>Applied Job Applications</h1></center>
+  <center><h3><a class="aa1" href="/">Home</a></h3></center>
+  
+<div class="container">
+  <table class="pop-tab">
+    <thead>
+      <tr class="pop-tr">
+        <th class="pop-th">No</th>
+        {% comment %} <th class="pop-th">ID</th> {% endcomment %}
+        <th class="pop-th">Date</th>
+        <th class="pop-th">Company</th>
+        <th class="pop-th">Position</th>
+        <th class="pop-th">App Status</th>
+        <th class="pop-th">Interviews</th>
+
+      </tr>
+    </thead>
+    <tbody>
+        {%for val in data %}
+      <tr>
+        <td class="pop-td">{{forloop.counter}}</td>
+        <td class="pop-td">{{val.date}}</td>
+        <td class="pop-td">{{val.company}}</td>
+        <td class="pop-td">{{val.job_title}}</td>
+        <td class="pop-td">{{val.status}}</td>
+        <td class="pop-td">{{val.interview}}</td>
+      </tr>
+{% endfor %}
+
+      <!-- Add more rows as needed -->
+    </tbody>
+  </table>
+</div>
+
+</div>
+
+</body>
+</html>

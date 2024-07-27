@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+    <link rel="stylesheet" href="{% static "nav.css" %}">
+    <link rel="stylesheet" href="{% static "footer1.css" %}">
+    <link rel="stylesheet" href="{% static "details.css" %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    {% comment %} <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> {% endcomment %}
+    <link rel="icon" type="image/x-icon" href="{%static "Profile.png"%}">
+    <title>JobBazaar</title>
+
+</head>
+<body>
+    <div class="page-wrapper">
+        <div class="nav-wrapper">
+         <div class="grad-bar"></div>
+         <nav class="navbar">
+           {% comment %} <img src="https://upload.wikimedia.org/wikipedia/en/thumb/c/c8/Bluestar_%28bus_company%29_logo.svg/1280px-Bluestar_%28bus_company%29_logo.svg.png" alt="Company Logo"> {% endcomment %}
+           <img class="a" src="{% static "logo.png" %}" alt="Company Logo">
+           
+           
+           <div class="menu-toggle" id="mobile-menu" onclick="hide()">
+             <span class="bar" onclick="unhide()"></span>
+             <span class="bar" onclick="unhide()"></span>
+             <span class="bar" onclick="unhide()"></span>
+           </div>
+           <ul class="nav no-search">
+             <li class="nav-item"><a href="/">Home</a></li>
+             <li class="nav-item"><a href="/About">About</a></li>
+             <li class="nav-item" ><a href="/Job">Job</a></li>
+             <li class="nav-item"><a href="/Profile">Profile</a></li>
+             
+              <li class="nav-item"><a class="col" href="/login">{{name}}</a></li>
+             <i class="fas fa-search" id="search-icon"></i>
+             <input class="search-input" type="text" placeholder="Search.."> 
+           </ul>
+           
+         </nav>
+        </div>
+        <div class="container">
+
+            <div class="job_details">
+                <div class="j_data">
+                    <div class="image_box">
+                        <img  class="box_img" src="{{jdata.logo.url}}">
+                        <div class="t"><h4 class="title">{{jdata.job_title}} </h4><br></div>
+                        <div class="tagggg">
+                        <div class="tags"><p class="tag_blue">{{jdata.time}}</p></div>
+                        <div class="tags1"><p class="tag_green">{{jdata.job_type}}</p></div>
+                        <div class="tags2"><p class="tag_orange">{{jdata.need}}</p></div>
+                        </div>
+                    </div>
+                    <div class="mobile_tag">
+                        <table class="tab1">
+                            <tr><td><i class="fa fa-shopping-bag" aria-hidden="true" style="font-size:18px;color:#1967D2"></i>&nbsp;{{jdata.category}}&emsp;<td><td><i class="fa fa-map-marker" aria-hidden="true" style="font-size:18px;color:#1967D2"></i>&nbsp;{{jdata.location}}-{{jdata.zipcode}}</td></tr>
+                            <tr><td style="padding-top:20px;"><i class="fa fa-inr" aria-hidden="true" style="font-size:18px;color:#1967D2"></i>&nbsp;{{jdata.salary}} LPA<td></tr>
+                        </table>
+
+                        <table class="tab_tag">
+                            <tr><td><p class="tag_blue">{{jdata.time}}</p></td><td><p class="tag_green">{{jdata.job_type}}</p></td></tr>
+                            <tr><td  colspan="2"><p class="tag_orange">{{jdata.need}}</p></td></tr>
+                            {% comment %} <tr><td><i class="fa fa-inr" aria-hidden="true" style="font-size:18px;color:#1967D2"></i>&nbsp;8.0 - 9.5 LPA<td></tr> {% endcomment %}
+                        </table>
+                    </div>
+
+                      
+                    
+                    <div class="desc">
+                        {% comment %} <div class="ioc"> {% endcomment %}
+                            <p class="icons"><i class="fa fa-shopping-bag" aria-hidden="true" style="font-size:18px;color:#1967D2"></i>&nbsp;{{jdata.category}}&emsp;<i class="fa fa-map-marker" aria-hidden="true" style="font-size:18px;color:#1967D2"></i>&nbsp;{{jdata.location}} - {{jdata.zipcode}}&emsp;<i class="fa fa-inr" aria-hidden="true" style="font-size:18px;color:#1967D2"></i>&nbsp;{{jdata.salary}} LPA</p>
+                            {% comment %} </div> {% endcomment %}
+                        <h2 class="h2">Job Description</h2>
+                        <p class="description">{{jdata.job_description}}</p>
+                        <h2 class="h2" style="margin-top:50px;">Key Responsibilities</h2>
+                        <ul class="responsibilities">
+                            {%for key in keyRes%}
+                            <li class="li">{{key}}</li>
+                            {%endfor%}
+                            {% comment %} <li class="li">Develop advanced applications for iOS and Android platforms utilizing Flutter.</li> {% endcomment %}
+
+                        </ul>
+                        <h2 class="h2" style="margin-top:50px;">Skill & Experience</h2>
+                        <ul class="responsibilities">
+                            <li class="li">You have at least {{jdata.experience}} years’ experience working as a {{jdata.job_title}}.</li>
+                            {%for key1 in skill %}
+                            <li class="li">{{key1}}</li>
+                            {%endfor%}
+                        </ul>
+                        
+
+                    </div>
+                </div>
+               
+            </div>
+
+            <div class="company_details" id="profile">
+                <div class="c_data">
+                    <button class="apply" onclick="openForm()">Apply For Job</button>
+                </div>
+                <div class="overview">
+                    <h3 class="h3">Overview</h3>
+                    <div class="data-c">
+                        <div class="Set_icon"> <i class="fa fa-shopping-bag cust" aria-hidden="true" style="font-size:30px;color:#689BE1;margin-top:5px"></i></div>
+                        <h4 class="h41">Date Posted:</h4>
+                        <p class="divp">{{jdata.current_date}}</p>
+                    </div>
+
+                    <div class="data-c">
+                        <div class="Set_icon"> <i class="fa fa-map-marker cust" aria-hidden="true" style="font-size:30px;color:#689BE1;margin-top:5px"></i></div>
+                        <h4 class="h41">Location</h4>
+                        <p class="divp txt-loc">Ahemdabad,Gujarat</p>
+                    </div>
+
+                    <div class="data-c">
+                        <div class="Set_icon"><i class="fa fa-clock-o cust" aria-hidden="true" style="font-size:30px;color:#689BE1;margin-top:5px"></i></div>
+                        <h4 class="h41">Hour</h4>
+                        <p class="divp txt-hour">{{jdata.hours}}h / week</p>
+                    </div>
+
+                    <div class="data-c">
+                        <div class="Set_icon"><i class="fa fa-inr cust" aria-hidden="true" style="font-size:30px;color:#689BE1;margin-top:5px"></i></div>
+                        <h4 class="h41">Rate</h4>
+                        <p class="divp txt-hour">{{jdata.rate}} / hour</p>
+                    </div>
+
+                    <div class="data-c">
+                        <div class="Set_icon"><i class="fa fa-money" aria-hidden="true" style="font-size:30px;color:#689BE1;margin-top:5px"></i></div>
+                        <h4 class="h41">Salary</h4>
+                        <p class="divp txt-sal">{{jdata.salary}} LPA</p>
+                    </div>
+
+                    <div class="data-c">
+                        <div class="Set_icon"><i class="fa fa-envelope" aria-hidden="true" style="font-size:30px;color:#689BE1;margin-top:5px"></i></div>
+                        <h4 class="h41">Email</h4>
+                        <p class="divp txt-sal">{{cdata.email}}</p>
+                    </div>
+
+                    <h2 class="h22">Job Skills</h2>
+                    <div class="skills">
+                        <div class="cust_skill"><p class="tag_blue white">{{jdata.skill1}} </p></div>
+                        <div class="cust_skill"><p class="tag_blue white">{{jdata.skill2}}</p></div>
+                        <div class="cust_skill"><p class="tag_blue white">{{jdata.skill3}}</p></div>
+                        {% comment %} <div class="cust_skill"><p class="tag_blue white">Freelancer</p></div>
+                        <div class="cust_skill"><p class="tag_blue white">Freelancer</p></div>
+                        <div class="cust_skill"><p class="tag_blue white">Freelancer</p></div> {% endcomment %}
+                    </div>
+                   
+                </div>
+                <div class="c_profile">
+                    <div class="c_image">
+                            <img class="c" src="{{cdata.logo.url}}">
+                    </div>
+                    <div class="click">
+                        <table style="margin-top:15px;">
+                            <tr><td><h3>{{cdata.company_name}}</h3></td></tr>
+                            <tr><td> <a class="view" href="#profile">View company profile</a></td></tr>
+
+                        </table>
+                    </div>
+                </div>
+        </div>
+    </div>
+    <div class="grid_job" id="grid">
+
+        {% for job in sugg %}
+
+          <div class="flex-content_job">
+          <div class="job_img">
+            {% comment %} Set Image {% endcomment %}
+            <img width="85px" height="85px" style="border-radius:50%;" src="{{job.logo.url}}">
+          </div>
+          <div class="company_name">
+          <p style="font-size:15px;color:#0076FD;font-family:Arial, Helvetica, sans-serif;">{{job.company_name}}</p>
+          <p class="clicks ab" onclick="location.href='/Jobs/{{job.id}}'" style=""><b>{{job.job_title}}</b></p>
+          <img class="loc" src="{%static "icon_loc.png"%}">
+          <p style="font-size:15px;color:gray;font-family:Arial, Helvetica, sans-serif;font-weight:100;position:absolute;left:110px; top:70px;">{{job.location}},{{job.zipcode}}</p>
+          </div>
+          <div class="tag1"><p class="green_col">Private</p></div>
+          <div class="tag2"><p class="orange_col">Urgent</p></div>
+          <div class="tag3"><p class="blue_col">{{job.time}}</p></div>
+         
+          {% comment %} <div class="lables"><ul class="tag"> <li class="tag_value">{{job.skill1}}</li> <li class="tag_value">{{job.skill2}}</li><li class="tag_value">{{job.skill3}}</li><ul></div> {% endcomment %}
+          <div class="lables"><ul class="tag"> <li class="tag_value">{{job.skill1}}</li> <li class="tag_value">{{job.skill2}}</li><ul></div>
+            
+            <div class="lables addon"><ul class="tag"><li class="blue_tag">+2</li> <ul></div>  
+           
+        </div>
+         {% endfor %}
+
+        </div> 
+
+
+        <div id="popupForm" class="form-popup">
+            <form class="form-container" style=" overflow: scroll;" method="POST"  enctype="multipart/form-data">
+              {% csrf_token %}
+              <center><h2>Personal Details</h2></center>
+              <b>Full Name</b><br>
+              {% comment %} <label for="job_title"><b>Job Title</b></label> {% endcomment %}
+              <input type="text" name="Name" placeholder="Full Name" required>
+              {% comment %} <input type="text" name="" placeholder="Enter Job Title"  required>
+              <input type="text" name="location" placeholder="Location Ex:- Ahemdabad" required> {% endcomment %}
+              <b>Resume</b><br>
+             
+              <input type="file" class="logos" id="myInput" name="cv" placeholder="Upload CV" accept="application/pdf" required></input>
+        
+         <!-- Add other fields similarly -->
+          
+              <button type="submit" class="btn1">Apply</button>
+              <button type="button" class="btn1 cancel" onclick="closeForm()">Close</button>
+            </form>
+          </div>
+
+          <footer class="footer-distributed">
+      
+            <p class="fh1">Copyright © 2012 - 2024 JobBazaar®. All rights reserved</p><br> 
+            <p><a class="fa1" href="mailto:unlockhome07@gmail.com">Contact Us</a></p><br>
+            <p class="logos"><i class="fa fa-facebook" onclick="location.href='https://www.facebook.com/'" style="font-size:25px;color:blue"></i>&emsp;&emsp;<i class="fa fa-instagram" onclick="location.href='https://www.instagram.com/'" style="font-size:25px;color:#E14053"></i>&emsp;&emsp;<i class="fa fa-linkedin" onclick='"location.href="https://in.linkedin.com/"' style="font-size:25px;color:blue"></i>&emsp;&emsp;<i class="fa fa-envelope" onclick='location.href="mailto:unlockhome07@gmail.com"' style="font-size:25px;color:red"></i></p>
+            {% comment %} <hr> {% endcomment %}
+                </footer>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="{% static 'navbar.js'%}"></script>
+    <script>
+        function openForm() {
+            document.getElementById("popupForm").style.display = "block";
+          }
+          
+          function closeForm() {
+            document.getElementById("popupForm").style.display = "none";
+          }
+    </script>
+</body>
+</html>

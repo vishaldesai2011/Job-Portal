@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% comment %} <meta name="description" content="Generate beautiful marriage biodatas effortlessly with our online biodata maker. Create personalized profiles, choose from stunning templates, and make a lasting impression. Design your perfect marriage biodata with ease."> {% endcomment %}
+    {% load static %}
+    <link rel="stylesheet" href="{% static "nav.css" %}">
+    <link rel="stylesheet" href="{% static "footer1.css" %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="icon" type="image/x-icon" href="{%static "Profile.png"%}">
+    
+
+    <title>Job Bazaar</title>
+   
+    <style>
+        body{
+            background-color:#f5f5f5;
+        }
+    .container{
+        {% comment %} margin-top:50px; {% endcomment %}
+        width:90%;
+        height:1000px;
+        background:#f5f5f5;
+        display:flex;
+        flex-direction:row;
+        flex-wrap:wrap;
+        margin-left:5%;
+        margin-right:5%;
+        justify-content:center;
+
+      
+
+        }
+        .left{
+            width:400px;
+            height:650px;
+            background-color:#ffffff;
+            border:0.5px solid gray;
+            margin-right:20px;
+        }
+      
+        .right{
+            width:920px;
+            height:650px;
+            margin-left:20px;
+            {% comment %} background-color:blue; {% endcomment %}
+            display:flex;
+            flex-wrap:wrap;
+            flex-direction:row;
+            border:0.5px solid gray;
+            background-color:white;
+        }
+        .resume{
+            text-align:left;
+            padding-top:10px;
+            {% comment %} margin-left:10%; {% endcomment %}
+            padding:10px;
+            font-size:24px;
+            font-weight:800;
+            font-family:Arial Black;
+            color:black;
+            padding-left:110px;
+            margin-top:50px;
+        }
+        .btn_download{
+            width:100px;
+            height:40px;
+            background-color:#689BE1;
+            color:white;
+            border:none;
+            {% comment %} border-radius:10px; {% endcomment %}
+            
+        }
+        .h2{
+            color:gray;
+            padding-top:10px;
+            padding-bottom:10px;
+        }
+        .profile_pic{
+            width: 398px;
+            height: 300px;
+            object-fit: cover;
+        }
+        .title{
+            {% comment %} font-family:Arial; {% endcomment %}
+            font-size:18px;
+            color:black;
+            padding-left:30px;
+            font-weight:600;
+            padding-top:20px;
+        }
+        .tdata{
+            padding-top:20px;
+            font-size:18px;
+            color:gray;
+            padding-left:60px;
+
+        }
+        table{
+            padding-top:20px;
+            font-family:Arial,sans-serif;
+        }
+        .title1{
+            font-size:16px;
+            padding-left:15px;
+            color:black;
+            font-weight:600;
+            padding-top:25px;
+
+           
+        }
+        .tdata1{
+            padding-top:20px;
+            font-size:18px;
+            color:gray;
+            padding-left:35px;
+
+        }
+        .left_table{
+            width:50%;
+            height:100%;
+            {% comment %} background-color:black; {% endcomment %}
+        }
+        .right_table{
+            width:50%;
+            height:100%;
+            {% comment %} background-color:green; {% endcomment %}
+        }
+        .cust{
+            float:left;
+            padding-left:10px;
+            width:auto;
+        }
+        .h2s{
+            color:gray;
+          
+            padding-bottom:10px; 
+            padding-left:10px;
+        }
+        .more{
+            background-color:white;
+            width:100%;
+            height:40%;
+            margin-top:60px;
+            border:0.5px solid gray;
+
+        }
+        ul{
+            padding-left:50px;
+            list-style-type: square;
+        }
+        .h22{
+            padding-left:20px;
+            text-align:left;
+            color:gray;
+            padding-top:20px;
+        }
+        li{
+            font-size:18px;
+            font-weight:550;
+            margin-top:10px;
+            
+        }
+        .btn{
+            width:70px;
+            height:30px;
+            background-color:#0076FD;
+            border:none;
+            color:white;
+            cursor: pointer;
+        }
+ 
+        .btn1{
+            width:110px;
+            height:30px;
+        }
+        @media only screen and (max-width: 600px) {
+            .resume{
+            padding-left:10%;
+            font-size:18px;
+            }
+            .left{
+                {% comment %} margin-left:10%; {% endcomment %}
+                margin-right:0px;
+            }
+           
+            .right{
+                height:800px;
+                width:400px;
+                margin-top:30px;
+                margin-left:0px;
+                {% comment %} width:400px; {% endcomment %}
+            }
+            .profile_pic{
+                width: 100%;
+                height: 300px;
+                object-fit: cover;
+            }
+            .right_table{
+                
+            }
+            .right_table{
+                position:relative;
+                top:305px;
+                right:185px;
+            }
+           
+            .title1{
+                padding-left:20px;
+                {% comment %} font-family:Arial; {% endcomment %}
+               
+            }
+            .title{
+                padding-left:20px;
+                {% comment %} font-family:Arial; {% endcomment %}
+               
+            }
+            .tdata{
+                padding-left:20px;
+                {% comment %} font-family:Arial; {% endcomment %}
+               
+            }
+            .tdata1{
+            padding-left:30px;
+
+               
+    
+            }
+
+        }
+        @media only screen and (min-width: 1601px) {
+            .resume{
+                margin-left:10%;
+                padding:0px;
+                margin-bottom:10px;
+            }
+         
+         }
+
+      
+
+    </style>
+    
+    <body>
+        <div class="page-wrapper">
+            <div class="nav-wrapper">
+             <div class="grad-bar"></div>
+             <nav class="navbar">
+               {% comment %} <img src="https://upload.wikimedia.org/wikipedia/en/thumb/c/c8/Bluestar_%28bus_company%29_logo.svg/1280px-Bluestar_%28bus_company%29_logo.svg.png" alt="Company Logo"> {% endcomment %}
+               <img class="a" src="{% static "logo.png" %}" alt="Company Logo">
+               
+               
+               <div class="menu-toggle" id="mobile-menu" onclick="hide()">
+                 <span class="bar" onclick="unhide()"></span>
+                 <span class="bar" onclick="unhide()"></span>
+                 <span class="bar" onclick="unhide()"></span>
+               </div>
+               <ul class="nav no-search">
+                 <li class="nav-item"><a href="/">Home</a></li>
+                 <li class="nav-item"><a href="About">About</a></li>
+                 <li class="nav-item" ><a href="#job">Job</a></li>
+                 <li class="nav-item"><a href="Applications">Applications</a></li>
+                  {% comment %} <li class="nav-item"><a class="col" href="login">Login/Register</a></li> {% endcomment %}
+                 <i class="fas fa-search" id="search-icon"></i>
+                 <input class="search-input" type="text" placeholder="Search.."> 
+               </ul>
+               
+             </nav>
+            </div>
+        </div>
+        {% comment %} <p class="resume">RESUME&emsp;&nbsp;<button class="btn">EDIT</button>&emsp;&nbsp;<button class="btn btn1" onclick="location.href='Download'">DOWNLOAD CV</button></p> {% endcomment %}
+        <p class="resume">RESUME&emsp;&nbsp;<button class="btn" onclick="location.href='/editProfile'">EDIT</button>&emsp;&nbsp;<button class="btn btn1" onclick="location.href='Download'">DOWNLOAD CV</button></p>
+
+        <div class="container">
+            <div class="left">
+                {%load static%}
+                <h2 class="h2"><font color="#0076FD">PROFESSIONAL DETAILS </font></h2>
+                <img class="profile_pic" src="{{Photo.url}}">
+                <table>
+                    <tr><td class="title">NAME</td><td class="tdata">{{name}}</td></tr>
+                    <tr><td class="title">AGE</td><td class="tdata">{{age}} Years</td></tr>
+                    <tr><td class="title">LOCATION</td><td class="tdata">{{location}}</td></tr>
+                    <tr><td class="title">EXPERIENCE</td><td class="tdata">{{experience}} Years</td></tr>
+                    <tr><td class="title">DEGREE</td><td class="tdata">{{degree}}</td></tr>
+
+                    {% comment %} <tr><td class="title">NAME</td><td class="tdata">Dhruv Patel</td></tr> {% endcomment %}
+
+                </table>
+            </div>
+            <div class="right">
+                {% comment %} <h2 class="h2 cust">ABOUT ME </h2> {% endcomment %}
+                <div class="left_table">
+                {% comment %} <h2 class="h2 cust">ABOUT ME </h2> {% endcomment %}
+                <table class="tab">
+                    <tr><th><h2 class="h2 cust"><font color="#0076FD">ABOUT ME</font> </h2></th></tr>
+                    <tr><td class="title1">NAME</td><td class="tdata1">{{name}}</td></tr>
+                    <tr><td class="title1">LOCATION</td><td class="tdata1">{{location}}</td></tr>
+                    <tr><td class="title1">DEGREE</td><td class="tdata1">{{degree}}</td></tr>
+                    <tr><td class="title1">PHONE</td><td class="tdata1">{{phone}}</td></tr>
+                    <tr><td class="title1">EMAIL</td><td class="tdata1"><font color="#0076FD"><font style="font-size:14px;">{{email}}</font></td></tr>
+                    <tr><td class="title1">SCHOOL</td><td class="tdata1">{{school}}</td></tr>
+                    <tr><td class="title1">COLLAGE</td><td class="tdata1">{{collage}}</td></tr>
+
+
+
+                    {% comment %} <tr><td class="title">NAME</td><td class="tdata">Dhruv Patel</td></tr> {% endcomment %}
+
+                </table>
+                </div>
+                <div class="right_table">
+                    <table class="tab" style="margin-top:25px;">
+                        <tr><th><h2 class="h2 cust" ></h2></th></tr>
+                        <tr><td class="title1">AGE</td><td class="tdata1">{{age}} Years</td></tr>
+                        <tr><td class="title1">EXPERIENCE</td><td class="tdata1">{{experience}} Years</td></tr>
+                        <tr><td class="title1">PASSING YEAR</td><td class="tdata1">{{pYear}}</td></tr>
+                        <tr><td class="title1">LANGUAGE</td><td class="tdata1">{{language}}</td></tr>
+                        <tr><td class="title1">LINKE IN</td><td class="tdata1">{{linkedin}}</td></tr>
+                        <tr><td class="title1">CGPA</td><td class="tdata1">{{cgpa}}</td></tr>
+                        <tr><td class="title1">SKILLS</td><td class="tdata1">Python,Java</td></tr>
+
+
+                    </table>
+                </div>
+                
+                {% comment %} <h2 class="h2s">PROFESSIONAL DETAILS </h2> {% endcomment %}
+                
+            </div>
+            <div class="more">
+                    <div class="details">
+                            {%if Check_EXP == 1 %}
+                            <h2 class="h22"><font color="#0076FD">EXPERIENCE</font></h2>
+                            {%endif%}
+
+                            <ul>
+                               {% for val in Exp %}
+                                    <li>{{val}}</li>
+                               {%endfor%}
+
+
+
+                            </ul> {% comment %} <h2>Skills : </h2> {% endcomment %}
+                            {%if Check_PRO == 1 %}
+                            <h2 class="h22"><font color="#0076FD">PROJECT</font></h2>
+                            {%endif%}
+                            <ul>
+                                {% for proj in Projects %}
+                                <li>{{proj}}</li>
+                                {%endfor%}
+                            </ul> {% comment %} <h2>Skills : </h2> {% endcomment %}
+                            <h2 class="h22"><font color="#0076FD">ACHIVENMENTS/HOBBIES</font></h2>
+                            <ul>
+                                {% for achi in achievements %}
+                                <li>{{achi}}</li>
+                                {%endfor%}
+                            </ul>
+                    </div>
+            </div>
+            
+        </div>
+      
+    
+    </body>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="{% static 'navbar.js'%}"></script>
+    </html>

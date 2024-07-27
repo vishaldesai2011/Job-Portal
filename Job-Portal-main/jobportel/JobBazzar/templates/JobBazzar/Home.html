@@ -1,0 +1,917 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% comment %} <meta name="description" content="Generate beautiful marriage biodatas effortlessly with our online biodata maker. Create personalized profiles, choose from stunning templates, and make a lasting impression. Design your perfect marriage biodata with ease."> {% endcomment %}
+    {% load static %}
+    <link rel="stylesheet" href="{% static "nav.css" %}">
+    <link rel="stylesheet" href="{% static "footer.css" %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="icon" type="image/x-icon" href="{%static "Profile.png"%}">
+    <title>Job Bazaar</title>
+   
+    <style>
+      .col{
+        color:#625AA8;
+      }
+      .container{
+        margin-top:15px;
+        width:100%;
+        height:500px;
+        display:flex;
+        {% comment %} background-color:#0076FD; {% endcomment %}
+      }
+      .left{
+        width:70%;
+        height:500px;
+        background-color:#E1EFFF;
+        float-left;
+        z-index:1;  
+        {% comment %} position:relative;   {% endcomment %}
+      }
+      .right{
+        width:30%;
+        height:500px;
+        background-color:#0076FD;
+        float:right;
+        position:relative;
+        overflow:hidden;
+        {% comment %} z-index:1; {% endcomment %}
+        {% comment %} float:right; {% endcomment %}
+      }
+      .top_text{
+        {% comment %} font-family:Raleway, sans-serif; {% endcomment %}
+        font-family:Arial,sans-serif;
+        text-align:left;
+        color:#28282B;
+        animation: pop 0.5s ease-in-out forwards;
+        {% comment %} justify-content:center; {% endcomment %}
+      }
+      .txt_center{
+      width:auto;
+      height:auto;
+      margin-left:25%;
+      margin-top:100px;
+      }
+      .poster{
+        position:absolute;
+        width:690px;
+        height:457px;
+        left:700px;
+        z-index:4;
+        top:123px;
+        mix-blend-mode:darken;
+        filter: drop-shadow(5px 5px 15px black);
+        animation: pop 0.5s ease-in-out forwards;
+      }
+      @keyframes pop {
+        0% { transform: scale(0.5); opacity: 0; }
+        100% { transform: scale(1); opacity: 1; }
+      }
+      {% comment %} .poster {% endcomment %}
+      {% comment %} .poster:hover{
+        -webkit-transform: scaleX(-1);
+        transform: scaleX(-1);
+      } {% endcomment %}
+      .dot{
+        width:250px;
+        mix-blend-mode:darken;
+        z-index:0;
+        right:300px;
+        top:300px;
+        position:absolute;
+        animation:dot_moves 5s infinite linear;
+        animation-fill-mode: forwards;
+        border-radius:20%;
+        
+        {% comment %} left:700px; {% endcomment %}
+
+      }
+
+      .display_container{
+        width:100%;
+        height:auto;
+        background-color:white;
+      }
+      .logo{
+        width:90%;
+        height:100px;
+        background-color:white;
+      }
+      .p_company{
+        text-align:left;
+        color:#0076FD;
+        padding-bottom:10px;
+        font-size:20px;
+      }
+      @keyframes dot_moves {
+          {% comment %} 0%{
+            right:210px;
+            top:300px;
+          } {% endcomment %}
+          0%{
+            right:300px;
+            top:350px;
+          }
+          100%{
+            right:400px;
+            top:60px;
+          }
+          {% comment %} 75%{
+            right:300px;
+            top:100px;
+          }
+
+          100%{
+            right:400px;
+            top:100px;
+          } {% endcomment %}
+      }
+      {% comment %} Slider CSS {% endcomment %}
+      .img_slide{
+        width: 80px;
+        height: 80px;
+        {% comment %} padding-left:0px; {% endcomment %}
+        animation: scroll 20s linear infinite;
+        {% comment %} filter: grayscale(100%); {% endcomment %}
+      
+      }
+      
+      .slide-track {
+        width: 100%;
+        display: flex;
+        gap: 3em;
+        overflow: hidden;
+      }
+      
+      .slider {
+        margin-top: 10px;
+        background-color: white;
+        {% comment %} padding: 8em 2em; {% endcomment %}
+        {% comment %} padding-left:100px; {% endcomment %}
+      
+      }
+      
+      @keyframes scroll {
+        0% {transform: translateX(0);}
+        100% {transform: translatex(-1000%)}
+      }
+
+      .nav_container{
+        margin-top:100px;
+        width:100%;
+        height:66px;
+        z-index: 999;
+        {% comment %} background-color:#E1EFFF; {% endcomment %}
+        {% comment %} background-color:#333333; {% endcomment %}
+        background-color: rgba(0,118,253);
+        {% comment %} background-color:#0076FD; {% endcomment %}
+        position: sticky;
+        top: 0px;
+        {% comment %} border-bottom:2px solid #3d3d3d;
+        border-top:1px solid #3d3d3d; {% endcomment %}
+
+      
+      }
+      nav{
+        position: sticky;
+        {% comment %} top: 100; {% endcomment %}
+      }
+      ul{
+        text-align:center;
+        list-style:none;
+        align:center;
+        margin-left:28%;
+        
+        {% comment %} display:flex; {% endcomment %}
+      
+      }
+      .li{
+        {% comment %} justify-content:center; {% endcomment %}
+        float:left;
+        {% comment %} display:flex; {% endcomment %}
+        align:center;
+        color:white;
+        {% comment %} padding:20px; {% endcomment %}
+        padding-top:12px;
+
+      }
+      .Search{
+        width:300px;
+        height:40px;
+        {% comment %} border-left:1px solid black; {% endcomment %}
+        border-top:1px solid black;
+        border-bottom:1px solid black;
+        {% comment %} border-top-left-radius:10px; {% endcomment %}
+        {% comment %} border-bottom-left-radius:10px; {% endcomment %}
+      }
+      .first{
+        width:300px;
+        height:40px;
+        {% comment %} border:1px solid black; {% endcomment %}
+        border-top-left-radius:0px;
+        border-bottom-left-radius:0px;
+        {% comment %} border:1px solid gray; {% endcomment %}
+        {% comment %} border-radius:10px; {% endcomment %}
+        {% comment %} border-top:1px solid black;
+        border-bottom:1px solid black; {% endcomment %}
+        border-top-right-radius:10px;
+        border-bottom-right-radius:10px;
+        margin-right:10px;
+
+
+
+      }
+      .btn_search{
+        cursor:pointer;
+        width:70px;
+        height:40px;
+        background:#E1EFFF;
+        border :none;
+        padding-left:0px;
+        border-right:1px solid black;
+        border-top:1px solid black;
+        border-bottom:1px solid black;
+        border-top-right-radius:10px;
+        border-bottom-right-radius:10px;
+
+      }
+      .btn_search:hover {
+        background-color:white;
+      }
+     
+      @keyframes visible{
+        0%{
+          position:relative;
+            opacity:0;
+            top:-100px;
+        }
+        50%{
+          position:relative;
+            opacity:0.5;
+            top:-50px;
+        }
+        100%{
+          {% comment %} position:relative; {% endcomment %}
+          top:0px;
+          opacity:1;
+        }
+      }
+      @keyframes slide-in {
+        from {
+          transform: translateX(-100%);
+          opacity: 1;
+        }
+        to {
+          transform: translateX(0%);
+          opacity: 1;
+        }
+      }
+      .nav_container.animate {
+        {% comment %} animation: visible 1s; {% endcomment %}
+        animation: slide-in 0.5s linear forwards;
+        animation-timing-function:linear;
+      }
+      .s_icon{
+        height:40px;
+        {% comment %} width:30px; {% endcomment %}
+        background-color:white;
+        border-top-left-radius:10px;
+        border-bottom-left-radius:10px;
+        {% comment %} border:none; {% endcomment %}
+        border-left:1px solid black;
+        border-top:1px solid black;
+        border-bottom:1px solid black;
+        
+        {% comment %} margin-top:5px; {% endcomment %}
+      }
+      {% comment %} https://preview.themeforest.net/item/superio-job-portal-job-board-reactjs-template/full_screen_preview/50109076?_ga=2.186576554.2022227752.1708713802-754955586.1708614748 {% endcomment %}
+      .main_container{
+        width:100%;
+        height:auto;
+        background-color:white;
+        {% comment %} display:flex; {% endcomment %}
+      }
+    .heading{
+      font-weight: normal;
+      padding-top:100px;
+      color:black;
+    }
+    .live_job{
+      color:gray;
+
+    }
+    .grid{
+      {% comment %} align-item:center; {% endcomment %}
+      width:90%;
+      margin-left:5%;
+      height:auto;
+      display:flex;
+      flex-wrap:wrap;
+      flex-direction:row;
+      background-color:none;
+      padding-top:30px;
+      justify-content:center;
+    }
+    .flex-content{
+      display:flex;
+      margin-left:40px;
+      width:400px;
+      height:100px;
+      margin-top:20px;
+      {% comment %} background-color:yellow; {% endcomment %}
+      border-radius:10px;
+      border:0.5px solid #D3D3D3;
+      margin-top:40px;
+    }
+    .flex-content:hover{
+      cursor:pointer;
+      box-shadow:  0 0 10px rgba(0, 0, 0, 0.5);
+    }
+    .flex_left{
+      margin:10px;
+      width:80px;
+      height:80px;
+      display-flex;
+      border-radius:10px;
+
+
+      {% comment %} width:30%;
+      height:70px; {% endcomment %}
+      background-color:#ECEDF2;
+      float:left;
+    }
+    .flex_right{
+      margin-top:20px;
+      float:left;
+      width:280px;
+      height:70px;
+      {% comment %} background-color:pink; {% endcomment %}
+      padding-top:5px;
+      
+    }
+    .lefts{
+      {% comment %} padding-top:10px; {% endcomment %}
+      text-align:left;
+      {% comment %} font-weight: normal; {% endcomment %}
+      font-family:Arial, Helvetica, sans-serif;  
+    }
+    .icon_cat{
+      margin-top:15px;
+      color:blue;
+      background-color:#ECEDF2;
+      
+    }
+    .apply{
+    filter: grayscale(80%);
+    }
+    .grid.animate {
+      animation: slide-up 1s ;
+      animation-timing-function:linear;
+    }
+    @keyframes slide-up {
+      from {
+        transform: translateY(20%);
+        opacity: 0.25;
+      }
+      to {
+        transform: translateY(0%);
+        opacity: 1;
+      }
+    }
+    .grid_job{
+      {% comment %} align-item:center; {% endcomment %}
+      width:90%;
+      height:auto;
+      margin-left:5%;
+      height:auto;
+      display:flex;
+      flex-wrap:wrap;
+      flex-direction:row;
+      background-color:none;
+      padding-top:30px;
+    }
+    .flex-content_job{
+      display:flex;
+      margin-left:40px;
+      width:300px;
+      height:280px;
+      margin-top:20px;
+      {% comment %} background-color:yellow; {% endcomment %}
+      border-radius:10px;
+      border:0.5px solid 	#D3D3D3;
+      margin-top:40px;
+      position:relative;
+      
+    }
+    .job_img{
+      margin-top:40px;
+      position:absolute;
+      left:36%;
+      {% comment %} margin-left:40%; {% endcomment %}
+      width:85px;
+      height:85px;
+      background-color:white;
+      border:1px solid #D3D3D3;
+      border-radius:50%;
+
+    }
+    .company_name{
+      position:absolute;
+      width:100%;
+      height:30px;
+      top:135px;
+      font-color:black;
+      
+    }
+    .loc{
+      position:absolute;
+      left:75px;
+      top:70px;
+    }
+    .tag1{
+      position:absolute;
+      top:10px;
+      width:80px;
+      height:30px;
+      background-color: #E1F2E5;
+      border-top-right-radius:10px;
+      border-bottom-right-radius:10px;
+    }
+    .tag2{
+      position:absolute;
+      top:50px;
+      width:80px;
+      height:30px;
+      background-color: #FEF2D9;
+      border-top-right-radius:10px;
+      border-bottom-right-radius:10px;
+    }
+    .tag3{
+      position:absolute;
+      top:10px;
+      left:218px;
+      width:80px;
+      height:30px;
+      background-color: #DDE8F8;
+      border-top-left-radius:10px;
+      border-bottom-left-radius:10px;
+    }
+    .green_col{
+      font-size:14px;
+      color:#73C388;
+      margin-top:5px;
+    }
+    .orange_col{
+      font-size:14px;
+      color:#FBD073;
+      margin-top:5px;
+    }
+    .blue_col{
+      font-size:14px;
+      color:#689BE1;
+      margin-top:5px;
+    }
+
+    .grid_job.animate {
+      animation: blow-up 1s ;
+      animation-timing-function:ease-in-out;
+    }
+
+    @keyframes blow-up {
+      0% {
+        opacity: 0;
+        transform: translateX(-100%);
+      }
+      100% {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+    .click{
+      font-size:16px;color:black;font-family:Arial, Helvetica, sans-serif;cursor:pointer;
+    }
+    .click:hover{
+      color:#0076FD;
+      
+    }
+
+  html{scroll-behavior:smooth}
+
+
+  @media only screen and (max-width: 600px) {
+    .right {
+      {% comment %} background-color: lightblue; {% endcomment %}
+      display:none;
+    }
+    .left{
+      width:100%;
+      z-index:none;
+    
+    }
+    .poster{
+      display:none;
+    }
+    .top_text{
+      font-size:25px;
+      
+    }
+    .txt_center{
+      margin-left:18%;
+    }
+    .img_slide{
+      width:50px;
+      height:50px;
+    }
+    .p_company{
+      font-size:17px;
+    }
+    .nav_container{
+      position:relative;
+      {% comment %} height:100px; {% endcomment %}
+      background-color:white;
+
+    }
+    ul{
+      margin-left:0px;
+    }
+    .grid{
+      margin-left:0%;
+    }
+    .flex-content{
+      margin-left:10px;
+      width:350px;
+    }
+    .s_icon{
+      display:none; 
+    }
+    .Search{
+      margin-left:40px;
+      border:1px solid black;
+      border-radius:10px;
+    }
+    .first{
+     border:1px solid black; 
+     border-radius:10px;  
+    }
+    .btn_search{
+      position:relative;
+      top:10px;
+      right:-150px;
+      border-radius:10px;
+      padding-bottom:10px;
+      border:1px solid black;
+      width:100px;
+      height:50px;
+      {% comment %} width:100px; {% endcomment %}
+    }
+    .heading{
+      padding-top:160px;
+    }
+    .flex-content_job{
+      margin-left:20px;
+    }
+  }
+  @media only screen and (min-width: 1601px) {
+   .poster{
+    left:1000px;
+   }
+
+}
+@media only screen and (min-width: 993px) and (max-width: 1400px) {
+  .poster{
+    left:600px;
+  }
+  .grid_job{
+    margin-left:1%;
+    width: 99%;
+
+  } 
+
+  .flex-content_job{
+    margin-left: 20px;
+    background:color:pink;
+    {% comment %} margin-left:10px; {% endcomment %}
+  }
+}
+
+
+
+
+  
+
+
+    
+    </style>
+</head>
+<body>
+    <div class="page-wrapper">
+        <div class="nav-wrapper">
+         <div class="grad-bar"></div>
+         <nav class="navbar">
+           {% comment %} <img src="https://upload.wikimedia.org/wikipedia/en/thumb/c/c8/Bluestar_%28bus_company%29_logo.svg/1280px-Bluestar_%28bus_company%29_logo.svg.png" alt="Company Logo"> {% endcomment %}
+           <img class="a" src="{% static "logo.png" %}" alt="Company Logo">
+           
+           
+           <div class="menu-toggle" id="mobile-menu" onclick="hide()">
+             <span class="bar" onclick="unhide()"></span>
+             <span class="bar" onclick="unhide()"></span>
+             <span class="bar" onclick="unhide()"></span>
+           </div>
+           <ul class="nav no-search">
+             <li class="nav-item"><a href="/"><b>Home</b></a></li>
+             <li class="nav-item"><a href="About"><b>About</b></a></li>
+             <li class="nav-item" ><a href="Job"><b>Job</b></a></li>
+             <li class="nav-item"><a href="Profile"><b>Profile</b></a></li>
+              <li class="nav-item"><a class="col" href="login"><b>{{name}}</a></li>
+             <i class="fas fa-search" id="search-icon"></i>
+             <input class="search-input" type="text" placeholder="Search.."> 
+           </ul>
+           
+         </nav>
+        </div>
+    </div>
+
+    <div class="container" id="con">
+
+      <div class="left">
+        <div class="txt_center">
+        <h1 class="top_text">Searching for job?<br>Find the<font color="#0076FD"> Best Company </font><br>job that fit you</h1>
+        {% comment %} <h1 class="top_text">The <font color="#0076FD">Easiest Way</font><br>to Get Your New <br>Job</h1> {% endcomment %}
+
+        </div>
+        <img class="poster" src="{% static "poster.png"%}">
+
+      </div>
+
+      <div class="right">
+        {% comment %} <img class="dot" src="{% static "dot1.png"%}"> {% endcomment %}
+
+      </div>
+
+    </div>
+
+    <div class="display_container" id="dis_con">
+      <center>
+      <div class="logo"> 
+
+    <p class="p_company"><b>Compnies we helped to grow</b></p>
+
+    <div class="slider">
+      <div class="slide-track">
+        
+        <div class="slide">
+          <img class="img_slide"  src="https://cdn.freebiesupply.com/logos/thumbs/2x/mcdonalds-black-logo.png" alt="image">
+        </div>
+        <div class="slide">
+          <img class="img_slide" src="https://cdn.freebiesupply.com/images/large/2x/starbucks-logo-black-and-white.png" alt="image">
+        </div>
+        <div class="slide">
+          <img class="img_slide" src="https://cdn.freebiesupply.com/logos/large/2x/general-electric-black-logo-png-transparent.png" alt="image">
+        </div>
+        <div class="slide">
+          <img class="img_slide" src="https://cdn.freebiesupply.com/logos/large/2x/apple-black-logo-png-transparent.png" alt="image">
+        </div>
+        <div class="slide">
+          <img class="img_slide" src="https://cdn.freebiesupply.com/logos/large/2x/nfl-logo-png-transparent.png" alt="image">
+        </div>
+        <div class="slide">
+          <img class="img_slide" src="https://cdn.freebiesupply.com/logos/large/2x/mercedes-benz-6-logo-png-transparent.png" alt="image">
+        </div>
+        {% comment %} <div class="slide">
+          <img class="img_slide" src="https://cdn.freebiesupply.com/logos/large/2x/hogwarts-logo-png-transparent.png" alt="">
+        </div> {% endcomment %}
+        <div class="slide">
+          <img class="img_slide" src="https://cdn.freebiesupply.com/logos/thumbs/2x/mcdonalds-black-logo.png" alt="image">
+        </div>
+        <div class="slide">
+          <img class="img_slide" src="https://cdn.freebiesupply.com/images/large/2x/starbucks-logo-black-and-white.png" alt="image">
+        </div>
+        <div class="slide">
+          <img class="img_slide" src="https://cdn.freebiesupply.com/logos/large/2x/general-electric-black-logo-png-transparent.png" alt="image">
+        </div>
+        <div class="slide">
+          <img class="img_slide" src="https://cdn.freebiesupply.com/logos/large/2x/nfl-logo-png-transparent.png" alt="image">
+        </div>
+        <div class="slide">
+          <img class="img_slide" src="https://cdn.freebiesupply.com/logos/large/2x/nestle-7-logo-png-transparent.png" alt="image">
+        </div>
+        <div class="slide">
+          <img class="img_slide" src="https://cdn.freebiesupply.com/logos/thumbs/2x/adidas-4-logo.png" alt="image">
+        </div>
+        <div class="slide">
+          <img class="img_slide" src="https://cdn.freebiesupply.com/logos/large/2x/mercedes-benz-6-logo-png-transparent.png" alt="image">
+        </div>
+        <div class="slide">
+          <img class="img_slide" src="https://cdn.freebiesupply.com/logos/large/2x/hogwarts-logo-png-transparent.png" alt="image">
+        </div>
+        <div class="slide">
+          <img class="img_slide" src="https://cdn.freebiesupply.com/logos/large/2x/toyota-logo-black-and-white.png" alt="image">
+        </div>
+        <div class="slide">
+          <img class="img_slide" src="https://cdn.freebiesupply.com/logos/large/2x/nike-4-logo-png-transparent.png" alt="image">
+        </div>
+        <div class="slide">
+          <img class="img_slide" src="https://cdn.freebiesupply.com/logos/large/2x/puma-3-logo-black-and-white.png" alt="image">
+        </div>
+        <div class="slide">
+          <img class="img_slide" src="https://cdn.freebiesupply.com/logos/large/2x/bmw-logo-logo-png-transparent.png" alt="image">
+        </div>
+      
+     
+        
+      </div>
+    </div>
+      </div>
+    </center>
+    </div>
+
+    {% comment %} Slider End {% endcomment %}
+    {% comment %} Nav Start {% endcomment %}
+    <div class="nav_container" id="nav_serch">
+        <center>
+      <nav>
+        <ul>
+          <li class="li"><lable><img class="s_icon" src="{%static 'sea3.png'%}"><lable><li>
+          <li class="li"><input onclick="location.href='Job'" id="searchInput" class="Search first" type="text" name="search" placeholder="Job...">
+            <ul class="sug" style="overflow:visible" id="suggestions"></ul>
+          <li class="li"><lable><img class="s_icon" src="{%static 'loc2.png'%}"><lable><li>
+          <li class="li"><input onclick="location.href='Job'" class="Search" id="searchInput1" type="text" name="search" placeholder="Location...">
+            <ul class="sug" style="overflow:visible" id="suggestions1"></ul>
+
+
+            {% load static %}
+          <li class="li"><button class="btn_search"><img style="margin-top:8px;" src="{% static "search.png" %}" alt="image"></button></li>
+          <ul>
+      </nav>
+    </div>
+    
+    {% comment %} Starting Categories {% endcomment %}
+    <div class="main_container">
+      <h1 class="heading">Popular Job Categories</h1>
+      <p class="live_job">{{all}} jobs live - today</p>
+
+      <div class="grid">
+        {% comment %} Start {% endcomment %}
+        <div class="flex-content">
+          <div class="flex_left">
+            <center><img class="icon_cat" width="50" height="50" src="{%static "account.png" %}" alt="accounting"/></center>
+          </div>
+          <div class="flex_right" onclick="location.href='/job/Accountant'">
+              <h3 class="lefts" >Accounting / Finance</h3>
+              <p class="lefts"><span style="color:gray;">({{acc}} open positions)</span></p>
+          </div>
+        </div>
+
+        
+
+        <div class="flex-content">
+          <div class="flex_left">
+            <center><img class="icon_cat" width="50" height="50" src="{%static "development.png" %}" alt="Development"/></center>
+          </div>
+          <div class="flex_right" onclick="location.href='/job/IT'">
+              <h3 class="lefts">Information Technology</h3>
+              <p class="lefts"><span style="color:gray;">({{it}} open positions)</span></p>
+          </div>
+        </div>
+
+
+
+        <div class="flex-content">
+          <div class="flex_left">
+            <center><img class="icon_cat" width="50" height="50" src="{%static "marketing.png" %}" alt="Marketing"/></center>
+          </div>
+          <div class="flex_right" onclick="location.href='/job/Marketing Executive'">
+              <h3 class="lefts">Marketing</h3>
+              <p class="lefts"><span style="color:gray;">({{me}} open positions)</span></p>
+          </div>
+        </div>
+
+        
+
+        <div class="flex-content">
+          <div class="flex_left">
+            <center><img class="icon_cat" width="50" height="50" src="{%static "sales.png" %}" alt="Sales"/></center>
+          </div>
+          <div class="flex_right" onclick="location.href='/job/Sales Executive'">
+              <h3 class="lefts">Sales</h3>
+              <p class="lefts"><span style="color:gray;">({{se}} open positions)</span></p>
+          </div>
+        </div>
+
+        <div class="flex-content">
+          <div class="flex_left">
+            <center><img class="icon_cat" width="50" height="50" src="{%static "gd.png" %}" alt="Graphic Design"/></center>
+          </div>
+          <div class="flex_right" onclick="location.href='/job/Graphic Designer'">
+              <h3 class="lefts">Graphic Design</h3>
+              <p class="lefts"><span style="color:gray;">({{g}} open positions)</span></p>
+          </div>
+        </div>
+
+        <div class="flex-content">
+          <div class="flex_left">
+            <center><img class="icon_cat" width="50" height="50" src="{%static "analitycs.png" %}" alt="Analytics"/></center>
+          </div>
+          <div class="flex_right" onclick="location.href='/job/Data Analyst'">
+              <h3 class="lefts">Analytics</h3>
+              <p class="lefts"><span style="color:gray;">({{da}} open positions)</span></p>
+          </div>
+        </div>
+
+
+        <div class="flex-content">
+          <div class="flex_left">
+            <center><img class="icon_cat" width="50" height="50" src="{%static "hr.png" %}" alt="Human Resource"/></center>
+          </div>
+          <div class="flex_right" onclick="location.href='/job/Human Resources Officer'">
+              <h3 class="lefts">Human Resource</h3>
+              <p class="lefts"><span style="color:gray;">({{hr}} open positions)</span></p>
+          </div>
+        </div>
+
+
+
+        <div class="flex-content">
+          <div class="flex_left">
+            <center><img class="icon_cat" width="50" height="50" src="{%static "internship.png" %}" alt="Internship"/></center>
+          </div>
+          <div class="flex_right" onclick="location.href='/job/Hotel Manager'">
+              <h3 class="lefts">Hotel Manager</h3>
+              <p class="lefts"><span style="color:gray;">({{hm}} open positions)</span></p>
+          </div>
+        </div>
+
+        <div class="flex-content">
+          <div class="flex_left">
+            <center><img class="icon_cat" width="50" height="50" src="{%static "ux.png" %}" alt="Fresher"/></center>
+          </div>
+          <div class="flex_right" onclick="location.href='/job/UX Designer'">
+              <h3 class="lefts">UX Designer</h3>
+              <p class="lefts"><span style="color:gray;">({{ux}} open positions)</span></p>
+          </div>
+        </div>
+        {% comment %} <div class="flex-content"></div>
+        <div class="flex-content"></div>
+        <div class="flex-content"></div>
+        <div class="flex-content"></div>
+        <div class="flex-content"></div> {% endcomment %}
+
+
+      </div>
+    </div>
+
+    <div class="Job" id="job">
+      <h1 class="heading">Featured Jobs</h1>
+      <p class="live_job">Know your worth and find the job that qualify your life</p>
+
+
+        <div class="grid_job">
+
+         
+
+          {% for job in first_five_jobs %}
+          {% comment %} <p>{{ job.job_title }}</p>
+          <p>{{ job.company_name }}</p> {% endcomment %}
+          <!-- Access other fields as needed -->
+            <div class="flex-content_job">
+            <div class="job_img">
+              {% comment %} Set Image {% endcomment %}
+              <img width="85px" height="85px" src="{{ job.logo.url}}">
+            </div>
+            <div class="company_name">
+            <p style="font-size:15px;color:#0076FD;font-family:Arial, Helvetica, sans-serif;">{{job.company_name}}</p>
+            <p class="click" onclick="location.href='Jobs/{{job.id}}'" style=""><b>{{job.job_title}}</b></p>
+            <img class="loc" src="{%static "icon_loc.png"%}">
+            <p style="font-size:15px;color:gray;font-family:Arial, Helvetica, sans-serif;position:absolute;left:100px; top:70px;">{{job.location}}-{{job.zipcode}}</p>
+            </div>
+            <div class="tag1"><p class="green_col">{{job.job_type}}</p></div>
+            <div class="tag2"><p class="orange_col">{{job.need}}</p></div>
+            <div class="tag3"><p class="blue_col">{{job.time}}</p></div>
+          </div>
+      {% endfor %}
+
+          <div>
+            {% comment %} <p id="vals" style="disply:none;">{{jt}}</p>  {% endcomment %}
+    </div>
+    {% comment %} Footer Start {% endcomment %}
+    
+<footer class="footer-distributed">
+  <hr>
+<p class="fh1">Copyright © 2012 - 2024 JobBazaar®. All rights reserved</p><br> 
+<p>.&emsp;<a class="fa1" href="mailto:unlockhome07@gmail.com">Contact Us</a></p><br>
+<p class="logos"><i class="fa fa-facebook" onclick="location.href='https://www.facebook.com/'" style="font-size:25px;color:blue"></i>&emsp;&emsp;<i class="fa fa-instagram" onclick="location.href='https://www.instagram.com/'" style="font-size:25px;color:#E14053"></i>&emsp;&emsp;<i class="fa fa-linkedin" onclick='"location.href="https://in.linkedin.com/"' style="font-size:25px;color:blue"></i>&emsp;&emsp;<i class="fa fa-envelope" onclick='location.href="mailto:unlockhome07@gmail.com"' style="font-size:25px;color:red"></i></p>
+{% comment %} <hr> {% endcomment %}
+    </footer>
+    {% comment %} Footer End {% endcomment %}
+</body>
+<script src="{% static 'home.js'%}"></script>
+
+<script>
+{% comment %} alert(window.innerWidth);    {% endcomment %}
+</script>
+
+         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script src="{% static 'navbar.js'%}"></script>
+        

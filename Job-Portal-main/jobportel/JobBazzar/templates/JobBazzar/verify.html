@@ -1,0 +1,193 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <style>
+
+        body {
+  margin: 0;
+  font-family: "Poppins", sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  {% comment %} background: #282a36; {% endcomment %}
+  background: white;
+  height: 100vh;
+  color: #625AA8;
+}
+
+.otp-field {
+  display: flex;
+}
+
+.otp-field input {
+  width: 24px;
+  font-size: 32px;
+  padding: 10px;
+  text-align: center;
+  border-radius: 5px;
+  margin: 2px;
+  border: 2px solid #625AA8;
+  background: white;
+  font-weight: bold;
+  color: #625AA8;
+  outline: none;
+  transition: all 0.1s;
+}
+
+.otp-field input:focus {
+  border: 2px solid #00B98E;
+  /*box-shadow: 0 0 2px 2px #a527ff6a;*/
+  box-shadow: 0 0 2px 2px #00B98E;
+
+}
+
+.disabled {
+  opacity: 0.5;
+}
+
+.space {
+  margin-right: 1rem !important;
+}
+#Button1{
+    width:100px;
+    height:40px;
+    margin-top:50px;
+    margin-left:100px;
+    font-size:20px;
+    background-color:#625AA8;
+    border:none;
+    color:#fff;
+    cursor: pointer;
+    
+    
+}
+#Button1:hover{
+    color:#625AA8;
+    background-color:white;
+    border:1px solid  #625AA8;
+    cursor: pointer;
+    
+    
+}
+.Red{
+    color:red;
+    font-size:20px;
+}
+    </style>
+  <!-- Required meta tags -->
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <!-- Font Awesome CDN  -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"
+        integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog=="
+        crossorigin="anonymous" />
+    <!-- CSS -->
+    <link rel="stylesheet" href="style.css"/>
+    <title>OTP</title>
+</head>
+<body>
+    <p>OTP sent on give email{{emails}}</p>
+    <p class="Red">
+        {% if messages %}
+        {% for message in messages %}
+        {{ message }}
+    {% endfor %}
+    {% endif %}
+    </p>
+    <h1><Label ID="LBL" runat="server" Text="Enter OTP"></Label></h1>
+    <div class="otp-field">
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+        <input id="TextBox1" name="one" maxlength="1"/>
+        <input id="TextBox2" name="two" maxlength="1"/>
+        <input id="TextBox3" name="thr" maxlength="1"/>
+        <input id="TextBox4" name="fou" maxlength="1"/>
+        <input id="TextBox5" name="fiv" maxlength="1"/>
+        <input id="last" name="six" maxlength="1"><br />
+        <Button id="Button1" type="submit" OnClick="Sub" />Verify</Button>
+    </form>
+
+</div>
+        <div>
+        </div>
+    <script>
+            function disableBack() {
+                window.history.forward();
+        }
+        disableBack();
+   
+    </script>
+
+    <script>
+      const inputs = document.querySelectorAll(".otp-field input");
+
+      inputs.forEach((input, index) => {
+          input.dataset.index = index;
+          input.addEventListener("keyup", handleOtp);
+          input.addEventListener("paste", handleOnPasteOtp);
+      });
+
+      function handleOtp(e) {
+          /**
+           * <input type="text" 👉 maxlength="1" />
+           * 👉 NOTE: On mobile devices `maxlength` property isn't supported,
+           * So we to write our own logic to make it work. 🙂
+           */
+          const input = e.target;
+          let value = input.value;
+          let isValidInput = value.match(/[0-9a-z]/gi);
+          input.value = "";
+          input.value = isValidInput ? value[0] : "";
+
+          let fieldIndex = input.dataset.index;
+          if (fieldIndex < inputs.length - 1 && isValidInput) {
+              input.nextElementSibling.focus();
+          }
+
+          if (e.key === "Backspace" && fieldIndex > 0) {
+              input.previousElementSibling.focus();
+          }
+
+          if (fieldIndex == inputs.length - 1 && isValidInput) {
+              //submit();
+              submit1();
+          }
+      }
+
+      function handleOnPasteOtp(e) {
+          const data = e.clipboardData.getData("text");
+          const value = data.split("");
+          if (value.length === inputs.length) {
+              inputs.forEach((input, index) => (input.value = value[index]));
+              //submit();
+              submit1();
+          }
+      }
+
+      function submit() {
+          console.log("Submitting...");
+          // 👇 Entered OTP
+          let otp = "";
+          inputs.forEach((input) => {
+              otp += input.value;
+              input.disabled = true;
+              input.classList.add("disabled");
+          });
+          console.log(otp);
+          // 👉 Call API below
+      }
+      {% comment %} function submit1() {
+          alert("submit");
+          // 👉 Call API below
+      } {% endcomment %}
+      
+          function disableBack() {
+              window.history.forward();
+      }
+ 
+  </script>
+</body>
+</html>

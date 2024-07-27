@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% comment %} <meta name="description" content="Generate beautiful marriage biodatas effortlessly with our online biodata maker. Create personalized profiles, choose from stunning templates, and make a lasting impression. Design your perfect marriage biodata with ease."> {% endcomment %}
+    {% load static %}
+    <link rel="stylesheet" href="{% static "nav.css" %}">
+    {% comment %} <link rel="stylesheet" href="{% static "footer.css" %}">     {% endcomment %}
+    <link rel="stylesheet" href="{% static "footer1.css" %}">    
+    <link rel="icon" type="image/x-icon" href="{%static "Profile.png"%}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>Job Bazaar</title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+        }
+        html{
+          {% comment %} width:100%; {% endcomment %}
+        }
+        .hor-nav{
+            width:100%;
+            {% comment %} margin-left:5%; {% endcomment %}
+            {% comment %} margin-right:5%; {% endcomment %}
+            height:180px;
+            background:linear-gradient(90deg, rgba(214,213,231,1) 0%, rgba(246,246,246,1) 56%, rgba(214,213,231,1) 100%);
+        }
+        input{
+            width:350px;
+            height:50px;
+            border-radius:10px;
+        }
+        .input-icon {
+            position: relative;
+          }
+          .input-icon input {
+            padding-left: 40px; 
+          }
+          .input-icon .fa {
+            position: absolute;
+            left: 5px; 
+            top: 50%;
+            transform: translateY(-50%);
+          }
+          .btn_find{
+            width:150px;
+            height:50px;
+            background-color:#0076fd;
+            border:none;
+            border-radius:10px;
+            color:white;
+            {% comment %} padding-left:10px; {% endcomment %}
+          }
+          td{
+            padding-left:10px;
+          }
+          table{
+            padding-top:50px;
+          }
+          select{
+            color:gray;
+            width:350px;
+            {% comment %} height:28px; {% endcomment %}
+            margin-top:20px;
+            margin-right:100px;
+            {% comment %} width:100px; {% endcomment %}
+            height:40px;
+            border-radius:10px;
+          }
+          @media only screen and (max-width: 600px) {
+            body{
+              {% comment %} width:100%; {% endcomment %}
+            }
+            .hor-nav{
+              width:100%;
+              {% comment %} margin-left:5%; {% endcomment %}
+              {% comment %} margin-right:5%; {% endcomment %}
+              height:auto;
+              background:linear-gradient(90deg, rgba(214,213,231,1) 0%, rgba(246,246,246,1) 56%, rgba(214,213,231,1) 100%);
+          }
+            input{
+                width:90px;
+                height:50px;
+                border-radius:10px;
+                box-sizing: content-box;
+
+            }
+            .btn_find{
+                width:70px;
+                height:50px;
+                background-color:#0076fd;
+                border:none;
+                border-radius:10px;
+                color:white;
+                {% comment %} padding-left:10px; {% endcomment %}
+              }
+              table{
+                width:100%;
+              }
+              td{
+                padding-left:0px;
+                width:auto;
+              }
+              .input-icon input {
+                padding-left: 40px; 
+            
+              }
+              .input-icon{
+              
+              }
+              select{
+                width:250px;
+                margin-top:20px;
+                margin-right:0px;
+                height:40px;
+                border-radius:10px;
+              }
+
+          }
+          {% comment %} auto com {% endcomment %}
+          .autocomplete {
+            /*the container must be positioned relative:*/
+            position: relative;
+            display: inline-block;
+          }
+          .autocomplete-items div {
+            padding: 10px;
+            cursor: pointer;
+            background-color: #fff;
+            border-bottom: 1px solid #d4d4d4;
+          }
+          .autocomplete-items div:hover {
+            /*when hovering an item:*/
+            background-color: #e9e9e9;
+          }
+          .autocomplete-active {
+            /*when navigating through the items using the arrow keys:*/
+            background-color: DodgerBlue !important;
+            color: #ffffff;
+
+          }
+          #pp{
+            display:none;
+          }
+
+          {% comment %} Display Job  {% endcomment %}
+
+        
+          .grid_job{
+            {% comment %} align-item:center; {% endcomment %}
+            width:90%;
+            height:auto;
+            margin-left:5%;
+            height:auto;
+            display:flex;
+            flex-wrap:wrap;
+            flex-direction:row;
+            background-color:none;
+            padding-top:20px;
+          }
+          .flex-content_job{
+            display:flex;
+            margin-left:40px;
+            width:300px;
+            height:325px;
+            margin-top:20px;
+            {% comment %} background-color:yellow; {% endcomment %}
+            border-radius:10px;
+            border:0.5px solid 	#D3D3D3;
+            margin-top:40px;
+            position:relative;
+            
+          }
+          .job_img{
+            margin-top:40px;
+            position:absolute;
+            left:36%;
+            {% comment %} margin-left:40%; {% endcomment %}
+            width:85px;
+            height:85px;
+            background-color:white;
+            border:1px solid #D3D3D3;
+            border-radius:50%;
+      
+          }
+          .company_name{
+            position:absolute;
+            width:100%;
+            height:30px;
+            top:135px;
+            font-color:black;
+            
+          }
+          .loc{
+            position:absolute;
+            left:80px;
+            top:70px;
+          }
+          .tag1{
+            position:absolute;
+            top:10px;
+            width:80px;
+            height:30px;
+            background-color: #E1F2E5;
+            border-top-right-radius:10px;
+            border-bottom-right-radius:10px;
+          }
+          .tag2{
+            position:absolute;
+            top:50px;
+            width:80px;
+            height:30px;
+            background-color: #FEF2D9;
+            border-top-right-radius:10px;
+            border-bottom-right-radius:10px;
+          }
+          .tag3{
+            position:absolute;
+            top:10px;
+            left:218px;
+            width:80px;
+            height:30px;
+            background-color: #DDE8F8;
+            border-top-left-radius:10px;
+            border-bottom-left-radius:10px;
+          }
+          .green_col{
+            font-size:14px;
+            color:#73C388;
+            margin-top:5px;
+          }
+          .orange_col{
+            font-size:14px;
+            color:#FBD073;
+            margin-top:5px;
+          }
+          .blue_col{
+            font-size:14px;
+            color:#689BE1;
+            margin-top:5px;
+          }
+      
+          .grid_job.animate {
+            animation: blow-up 1s ;
+            animation-timing-function:ease-in-out;
+          }
+      
+       
+          .click{
+            font-size:16px;color:black;font-family:Arial, Helvetica, sans-serif;cursor:pointer;
+          }
+          .click:hover{
+            color:#0076FD;
+            
+          }
+          .lables{
+            position: absolute;
+            top:250px;
+            right:20px;
+          }
+          .addon{
+            top:290px;
+            right:130px;
+
+
+          }
+          span{
+            width:120px;
+            height:30px;
+            background-color:pink;
+          }
+          .tag{
+            width:auto;
+            list-style:none;
+            display:flex;
+          }
+          .blue_tag{
+            width: 50px;
+            height: 30px;
+            background-color: #1967D2;
+            border-radius: 10px;
+            display: flex;
+            justify-content: center;
+            padding: 8px;
+            font-size: 13px;
+            color: white;
+            margin-left: 4px;
+          }
+          .tag_value{
+              width:130px;
+              height:30px;
+              background-color:#F0F5F7;
+              border-radius:10px;
+              display:flex;
+              justify-content:center;
+              padding:8px;
+              font-size:12px;
+              color:#9F9B9B;
+              margin-left:4px;
+            
+          }
+          @media only screen and (max-width: 600px) {
+            .flex-content_job{
+              margin-left:20px;
+            }
+            .grid{
+              margin-left:0%;
+            }
+            .flex-content{
+              margin-left:10px;
+              width:350px;
+            }
+            .pp{
+              display:none;
+            }
+            .tag3{
+              left:200px;
+            }
+          }
+          @media only screen and (min-width: 993px) and (max-width: 1400px) {
+            .poster{
+              left:600px;
+            }
+            .grid_job{
+              margin-left:1%;
+              width: 99%;
+          
+            } 
+          
+            .flex-content_job{
+              margin-left: 20px;
+              background:color:pink;
+              {% comment %} margin-left:10px; {% endcomment %}
+            }
+          }
+         
+    </style>
+    <body>
+        <div class="page-wrapper">
+            <div class="nav-wrapper">
+             <div class="grad-bar"></div>
+             <nav class="navbar">
+               {% comment %} <img src="https://upload.wikimedia.org/wikipedia/en/thumb/c/c8/Bluestar_%28bus_company%29_logo.svg/1280px-Bluestar_%28bus_company%29_logo.svg.png" alt="Company Logo"> {% endcomment %}
+               <img class="a" src="{% static "logo.png" %}" alt="Company Logo">
+               
+               
+               <div class="menu-toggle" id="mobile-menu" onclick="hide()">
+                 <span class="bar" onclick="unhide()"></span>
+                 <span class="bar" onclick="unhide()"></span>
+                 <span class="bar" onclick="unhide()"></span>
+               </div>
+               <ul class="nav no-search">
+                 <li class="nav-item"><a href="/">Home</a></li>
+                 <li class="nav-item"><a href="/About">About</a></li>
+                 <li class="nav-item" ><a href="#job">Job</a></li>
+                 <li class="nav-item"><a href="/Profile">Profile</a></li>
+                  <li class="nav-item"><a class="col" href="/login">{{name}}</a></li>
+                 {% comment %} <i class="fas fa-search" id="search-icon"></i>
+                 <input class="search-input" type="text" placeholder="Search..">  {% endcomment %}
+               </ul>
+               
+             </nav>
+            </div>
+        </div>
+
+        <div class="hor-nav">
+          <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <center>
+            <table>
+            <tr><td>
+                <div class="input-icon" >
+                  <div class="autocomplete" style="width:auto;">
+                    <i id="ioc" class="fa fa-search" style="font-size:30px; color:gray"></i>
+                    <input type="text" id="myInput"  placeholder="job title" name="title" onclick="call(this)">
+                  </div>
+                  </div>
+                <td>
+                <td>
+                    <div class="input-icon" id="post">
+                        <i class="fa fa-map-marker" style="font-size:30px; color:gray"></i>
+                        <input type="text" placeholder="City or Postcode" name="zip" onclick="call(this)">
+                      </div>
+                </td>
+                <td>
+                   <button class="btn_find" id="post2" >Find Job</button>
+                </td>
+            </tr>
+            </table>
+            {% comment %} <table>
+              <tr>
+                <td> {% endcomment %}
+                <select name="category" id="post1" onclick="call(this)">
+                  <option value="" disabled selected>Search By Category</option>
+                  {% comment %} <option value="Android">Android</option>
+                  <option>Java</option>
+                  <option>Marketing</option> {% endcomment %}
+                </select>
+                {% comment %} <button class="btn_find">Find Job</button> {% endcomment %}
+              </center>
+            </form>
+            
+        </div>
+        {% comment %} Display Jobs {% endcomment %}
+        <div class="grid_job" id="grid">
+
+          {% for job in allJob %}
+  
+            <div class="flex-content_job">
+            <div class="job_img">
+              {% comment %} Set Image {% endcomment %}
+              <img width="85px" height="85px" style="border-radius:50%;" src="{{ job.logo.url}}">
+            </div>
+            <div class="company_name">
+            <p style="font-size:15px;color:#0076FD;font-family:Arial, Helvetica, sans-serif;">{{job.company_name}}</p>
+            <p class="click" onclick="location.href='/Jobs/{{job.id}}'" style=""><b>{{job.job_title}}</b></p>
+            <img class="loc" src="{%static "icon_loc.png"%}">
+            <p style="font-size:15px;color:gray;font-family:Arial, Helvetica, sans-serif;font-weight:100;position:absolute;left:110px; top:70px;">{{job.location}},{{job.zipcode}}</p>
+            </div>
+            <div class="tag1"><p class="green_col">Private</p></div>
+            <div class="tag2"><p class="orange_col">Urgent</p></div>
+            <div class="tag3"><p class="blue_col">{{job.time}}</p></div>
+           
+            {% comment %} <div class="lables"><ul class="tag"> <li class="tag_value">{{job.skill1}}</li> <li class="tag_value">{{job.skill2}}</li><li class="tag_value">{{job.skill3}}</li><ul></div> {% endcomment %}
+            <div class="lables"><ul class="tag"> <li class="tag_value">{{job.skill1}}</li> <li class="tag_value">{{job.skill2}}</li><ul></div>
+              
+              <div class="lables addon"><ul class="tag"><li class="blue_tag">+2</li> <ul></div>  
+             
+          </div>
+           {% endfor %}
+
+          </div>
+          <p id="pp">{{jt}}</p>
+
+            {% comment %} <p id="vals" style="disply:none;">{{jt}}</p>  {% endcomment %}
+    </div>
+    <footer class="footer-distributed">
+      
+    <p class="fh1">Copyright © 2012 - 2024 JobBazaar®. All rights reserved</p><br> 
+    <p><a class="fa1" href="mailto:unlockhome07@gmail.com">Contact Us</a></p><br>
+    <p class="logos"><i class="fa fa-facebook" onclick="location.href='https://www.facebook.com/'" style="font-size:25px;color:blue"></i>&emsp;&emsp;<i class="fa fa-instagram" onclick="location.href='https://www.instagram.com/'" style="font-size:25px;color:#E14053"></i>&emsp;&emsp;<i class="fa fa-linkedin" onclick='"location.href="https://in.linkedin.com/"' style="font-size:25px;color:blue"></i>&emsp;&emsp;<i class="fa fa-envelope" onclick='location.href="mailto:unlockhome07@gmail.com"' style="font-size:25px;color:red"></i></p>
+    {% comment %} <hr> {% endcomment %}
+        </footer>
+        <script src="{% static 'auto_complete.js'%}"></script>
+        <script src="{% static 'navbar.js'%}"></script>
+        <script src="{% static 'home.js'%}"></script>
+      
+
+        {% comment %} <script src="{%static "navbar.js"%}"></script> {% endcomment %}
+
+  </body>
+  <script>
+{% comment %} Fro Remove Duplicate and Show Job category {% endcomment %}
+let str_cat = "{{jc}}";
+let array_category1 = str_cat.split(","); 
+
+
+let arr = ["apple", "mango", "apple",
+          "orange", "mango", "mango"];
+ 
+function removeDuplicates(arr) {
+    return arr.filter((item,
+        index) => arr.indexOf(item) === index);
+}
+var array_category = removeDuplicates(array_category1)
+array_category.sort();
+var selectElement = document.getElementById("post1");
+ var i = 0;
+ array_category.forEach(function(option) {
+ var optionElement = document.createElement("option");
+ optionElement.textContent = option;
+ optionElement.value = option; 
+ selectElement.appendChild(optionElement);
+});
+
+function call(){
+  var url = window.location.href;
+  var numberOfSlashes = url.split('/').length - 1;
+  if  (numberOfSlashes > 3){
+  window.location.pathname = "/Job"; 
+    }
+}
+
+
+{% comment %} alert("{{jc}}"); {% endcomment %}
+  </script>
+    </html>
